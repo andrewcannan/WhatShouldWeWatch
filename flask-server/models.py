@@ -7,6 +7,12 @@ users_groups = db.Table('users_groups',
     db.Column('group_id', db.Integer, db.ForeignKey('group.id'), primary_key=True)
 )
 
+# Association table for Group-Show many-to-many relationship
+groups_shows = db.Table('groups_shows',
+    db.Column('group_id', db.Integer, db.ForeignKey('group.id'), primary_key=True),
+    db.Column('show_id', db.Integer, db.ForeignKey('show.id'), primary_key=True)
+)
+
 class User(db.Model):
     '''
     schema for User model
@@ -31,7 +37,25 @@ class Group(db.Model):
     group_code = db.Column(db.Integer, nullable=False)
     avatar = db.Column(db.Enum('avatar1', 'avatar2', 'avatar3', 'avatar4', 'avatar5',
                                'avatar6', 'avatar7', 'avatar8', 'avatar9', 'avatar10'))
+    shows = db.relationship('Show', secondary=groups_shows, backref=db.backref('groups', lazy='dynamic'), cascade="all, delete")
 
     def __repr__(self):
         # represents itself in the form of a string
         return f"{self.id} - {self.group_name} | created by user: {self.created_by}"
+
+
+class Show(db.Model):
+    '''
+    schema for Show model
+    '''
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.column(db.String, nullable=False)
+    description = db.column(db.Text, nullable=False)
+    pic_url = db.column(db.String, nullable=False)
+    media_type = db.column(db.Enum('tv', 'film'), nullable=False)
+    tmdb_genre_id = db.column(db.Integer, nullable=False)
+    genre_name = db.column(db.String, nullable=False)
+
+    def __repr__(self):
+        # represents itself in the form of a string
+        return f"{self.id} - {self.name} | {self.media_type}"
