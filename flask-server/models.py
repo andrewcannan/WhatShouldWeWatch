@@ -1,4 +1,4 @@
-from server import db
+from app import db
 
 
 # Association table for User-Group many-to-many relationship
