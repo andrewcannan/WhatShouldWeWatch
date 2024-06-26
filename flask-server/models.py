@@ -49,12 +49,12 @@ class Show(db.Model):
     schema for Show model
     '''
     id = db.Column(db.Integer, primary_key=True)
-    name = db.column(db.String, nullable=False)
-    description = db.column(db.Text, nullable=False)
-    pic_url = db.column(db.String, nullable=False)
-    media_type = db.column(db.Enum('tv', 'film'), nullable=False)
-    tmdb_genre_id = db.column(db.Integer, nullable=False)
-    genre_name = db.column(db.String, nullable=False)
+    name = db.Column(db.String, nullable=False)
+    description = db.Column(db.Text, nullable=False)
+    pic_url = db.Column(db.String, nullable=False)
+    media_type = db.Column(db.Enum('tv', 'film'), nullable=False)
+    tmdb_genre_id = db.Column(db.Integer, nullable=False)
+    genre_name = db.Column(db.String, nullable=False)
 
     def __repr__(self):
         # represents itself in the form of a string
