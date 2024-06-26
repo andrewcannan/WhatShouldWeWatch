@@ -36,7 +36,7 @@ class Group(db.Model):
     group_name = db.Column(db.String, nullable=False)
     group_code = db.Column(db.Integer, nullable=False)
     avatar = db.Column(db.Enum('avatar1', 'avatar2', 'avatar3', 'avatar4', 'avatar5',
-                               'avatar6', 'avatar7', 'avatar8', 'avatar9', 'avatar10'))
+                               'avatar6', 'avatar7', 'avatar8', 'avatar9', 'avatar10', name='avatar_enum'))
     shows = db.relationship('Show', secondary=groups_shows, backref=db.backref('groups', lazy='dynamic'), cascade="all, delete")
 
     def __repr__(self):
@@ -52,7 +52,7 @@ class Show(db.Model):
     name = db.Column(db.String, nullable=False)
     description = db.Column(db.Text, nullable=False)
     pic_url = db.Column(db.String, nullable=False)
-    media_type = db.Column(db.Enum('tv', 'film'), nullable=False)
+    media_type = db.Column(db.Enum('tv', 'film', name='media_type_enum'), nullable=False)
     tmdb_genre_id = db.Column(db.Integer, nullable=False)
     genre_name = db.Column(db.String, nullable=False)
 
