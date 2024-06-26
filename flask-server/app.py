@@ -17,5 +17,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = (
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
+from routes import *
+
 if __name__ == '__main__':
     app.run(debug=True)
