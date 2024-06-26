@@ -15,6 +15,7 @@ A web application for users to create and manage watchlists either alone or with
     * [Web App Goals](#web-app-goals)
 * [Design](#design)
     * [User Stories](#user-stories)
+    * [Database Schema](#database-schema)
 
 ## User Experience
 
@@ -54,3 +55,56 @@ A web application for users to create and manage watchlists either alone or with
 | 11 | Group Owner | Edit the group name and description | Keep the group information accurate |
 | 12 | Group Owner | Delete a group | Maintain a clean and organized watchlist collection |
 | 13 | Group Owner | Invite other users to my group with a unique code | Easily expand the group membership |
+<br>
+
+### Database Schema
+
+Database will consist of five tables designed to manage information about users, groups and shows and thier relationships.
+
+1. User Table 
+
+This table stores user information.
+
+* id (Integer, Primary Key, Not Null): Unique identifier for each user.
+* username (String, Not Null): Username of the user.
+* password (String, Not Null, Unique): Password of the user.
+
+2. Group Table 
+
+This table stores information about groups created by users.
+
+* id (Integer, Primary Key, Not Null): Unique identifier for each group.
+* created_by (Integer, Foreign Key, Not Null): ID of the user who created the group. This references user.id and has a cascading delete.
+* group_name (String, Not Null): Name of the group.
+* group_code (Integer, Not Null): Code associated with the group.
+* avatar (Enum, Not Null): Avatar for the group, with possible values being 'avatar1' to 'avatar10'.
+
+3. Show Table
+
+This table stores information about various shows.
+
+* id (Integer, Primary Key, Not Null): Unique identifier for each show.
+* name (String, Not Null): Name of the show.
+* description (Text, Not Null): Description of the show.
+* pic_url (String, Not Null): URL of the show's picture.
+* media_type (Enum, Not Null): Type of media, either 'tv' or 'film'.
+* tmdb_genre_id (Integer, Not Null): Identifier for the genre from The Movie Database (TMDb).
+* genre_name (String, Not Null): Name of the genre.
+
+4. Users-Groups Table
+
+This table defines a many-to-many relationship between users and groups.
+
+* user_id (Integer, Foreign Key, Not Null): ID of the user. This references user.id.
+* group_id (Integer, Foreign Key, Not Null): ID of the group. This references group.id.
+
+5. Groups-Shows Table
+
+This table defines a many-to-many relationship between groups and shows.
+
+* group_id (Integer, Foreign Key, Not Null): ID of the group. This references group.id.
+* show_id (Integer, Foreign Key, Not Null): ID of the show. This references show.id.
+<br><br>
+
+<img src="docs\readme-images\db-schema.png">
+<br>
