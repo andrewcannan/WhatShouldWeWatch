@@ -9,6 +9,8 @@ load_dotenv()
 
 app = Flask(__name__)
 
+app.config["SECRET_KEY"] = os.getenv("FLASK_SECRET_KEY")
+
 app.config['SQLALCHEMY_DATABASE_URI'] = (
     f"postgresql://{os.getenv('PGUSER')}:{os.getenv('PGPASSWORD')}"
     f"@{os.getenv('PGHOST')}:{os.getenv('PGPORT')}/{os.getenv('PGDATABASE')}"
