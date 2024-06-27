@@ -1,4 +1,4 @@
-from flask import request, jsonify
+from flask import request, jsonify, session
 from app import app, db
 from models import User
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -18,7 +18,7 @@ def register():
         return jsonify({'error': 'Username already exists'}), 400
     
     if not is_password_valid(request.form.get('password')):
-        return jsonify({'error': 'Password does not meet complexity requirements'}), 400
+        return jsonify({'error': 'Password does not meet complexity requirements.'}), 400
     
     new_user = User(
         username = request.form.get('username').lower(),
@@ -28,7 +28,24 @@ def register():
     db.session.add(new_user)
     db.session.commit()
 
-    return jsonify({'message': 'User created succesfully'}), 201
+    return jsonify({'message': 'User created succesfully.'}), 201
+
+
+@app.route('/login', methods=['POST'])
+def login():
+    """
+    Handles login of user.
+    """
+    existing_user = User.query.filter(
+        User.username == request.form.get('username').lower()).first()
+    
+    if existing_user and check_password_hash(
+        existing_user.password, request.form.get('password')):
+        session['user'] = request.form.get('username').lower()
+        return jsonify({'message': 'Login Successful.'}), 200
+        
+    else:
+        return jsonify({'error': 'Username and/or Password incorrect.'}), 401
 
 
 # Callback Functions
