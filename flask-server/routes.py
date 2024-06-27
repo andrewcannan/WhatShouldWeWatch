@@ -8,7 +8,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 @app.route('/register', methods=['POST'])
 def register():
     """
-    Adds new instance of user to database if not already existing.
+    Adds new instance of user to database if not already existing,
+    and if password passes complexity requirements.
     """
     existing_user = User.query.filter(
         User.username == request.form.get('username').lower()).all()
