@@ -18,7 +18,8 @@ def register():
         return jsonify({'error': 'Username already exists'}), 400
     
     if not is_password_valid(request.form.get('password')):
-        return jsonify({'error': 'Password does not meet complexity requirements.'}), 400
+        return jsonify(
+            {'error': 'Password does not meet complexity requirements.'}), 400
     
     new_user = User(
         username = request.form.get('username').lower(),
@@ -46,6 +47,15 @@ def login():
         
     else:
         return jsonify({'error': 'Username and/or Password incorrect.'}), 401
+
+
+@app.route("/logout")
+def logout():
+    """
+    Handle logout by clearing session cookies.
+    """
+    session.clear()
+    return jsonify({'message': 'Logged out successfully.'}), 200
 
 
 # Callback Functions
