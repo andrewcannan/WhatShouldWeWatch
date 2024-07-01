@@ -12,7 +12,7 @@ const LoginForm = () => {
                 <input type="password" className="form-control" id="floatingPassword" placeholder="Password"></input>
                 <label for="floatingPassword">Password</label>
             </div>
-            <button type="submit" className="btn btn-danger mb-3">Submit</button>
+            <button type="submit" className="btn btn-danger mb-3">Log In</button>
         </form>
     );
 }
