@@ -4,16 +4,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '@popperjs/core';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
-import LoginForm from './components/forms/LoginForm';
-import RegisterForm from './components/forms/RegisterForm';
+import Login from 'client/src/pages/Login'
 
 function App() {
     return (
         <div className="App">
             <Router>
                 <Routes>
-                    <Route path="/login" element={<LoginForm />} />
-                    <Route path="/register" element={<RegisterForm />} />
+                    <Route path="/login" element={<Login />} />
                 </Routes>
             </Router>
         </div>
