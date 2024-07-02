@@ -62,7 +62,7 @@ const RegisterForm = () => {
                 <input type="password" className="form-control" id="confirmPassword" value={formData.confirmPassword} onChange={handleChange} placeholder="Confirm Password" required></input>
                 <label htmlFor="confirmPassword">Confirm Password</label>
             </div>
-            <button type="submit" className="btn btn-danger mb-3">Register</button>
+            <button type="submit" className="btn btn-danger mb-3">Create</button>
         </form>
     );
 };
