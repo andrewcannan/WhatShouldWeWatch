@@ -5,6 +5,7 @@ import '@popperjs/core';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 import Login from './pages/Login/Login.js'
+import Register from './pages/Register/Register.js'
 
 function App() {
     return (
@@ -12,6 +13,7 @@ function App() {
             <Router>
                 <Routes>
                     <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
                 </Routes>
             </Router>
         </div>
