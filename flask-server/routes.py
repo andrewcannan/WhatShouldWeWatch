@@ -68,8 +68,7 @@ def is_password_valid(string):
     - Contains at least one lowercase letter
     - Contains at least one digit
     """
-    if (not string or
-        len(string) < 8 or
+    if (len(string) < 8 or
         not any(char.isupper() for char in string) or
         not any(char.islower() for char in string) or
         not any(char.isdigit() for char in string)):
