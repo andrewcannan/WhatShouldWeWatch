@@ -15,9 +15,9 @@ const RegisterForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const { username, password, confirmPasword } = formData;
+        const { username, password, confirmPassword } = formData;
 
-        if (password !== confirmPasword) {
+        if (password !== confirmPassword) {
             // change style of input, add warning to user, remove alert
             alert('Passwords do not match');
             return;
@@ -25,7 +25,7 @@ const RegisterForm = () => {
 
         const form = new FormData();
         form.append('username', username);
-        form.append('pasword', password);
+        form.append('password', password);
 
         try {
             const response = await fetch('/register', {
@@ -52,15 +52,15 @@ const RegisterForm = () => {
         <form onSubmit={handleSubmit}>
             <div className="form-floating mb-3">
                 <input type="text" className="form-control" id="username" value={formData.username} onChange={handleChange} placeholder="Username" required></input>
-                <label for="username">Username</label>
+                <label htmlFor="username">Username</label>
             </div>
             <div className="form-floating mb-3">
                 <input type="password" className="form-control" id="password" value={formData.password} onChange={handleChange} placeholder="Password" required></input>
-                <label for="password">Password</label>
+                <label htmlFor="password">Password</label>
             </div>
             <div className="form-floating mb-3">
                 <input type="password" className="form-control" id="confirmPassword" value={formData.confirmPassword} onChange={handleChange} placeholder="Confirm Password" required></input>
-                <label for="confirmPassword">Confirm Password</label>
+                <label htmlFor="confirmPassword">Confirm Password</label>
             </div>
             <button type="submit" className="btn btn-danger mb-3">Register</button>
         </form>
