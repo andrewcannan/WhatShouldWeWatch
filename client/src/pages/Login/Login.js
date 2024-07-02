@@ -8,7 +8,7 @@ const Login = () => {
     return(
         <div className="login">
             <div className="form-wrapper">
-                <h1 className="mb-3">Login</h1>
+                <h1 className="mb-3">Sign In</h1>
                 <LoginForm />
                 <p>Need an Account? <Link to='/register'>We Got You!</Link></p>
             </div>
