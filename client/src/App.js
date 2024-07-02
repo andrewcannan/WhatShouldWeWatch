@@ -1,25 +1,21 @@
-import React, { useState, useEffect } from "react";
-
+import React from "react";
 import { BrowserRouter as Router, Route, Routes, } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@popperjs/core';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
+import LoginForm from './components/forms/LoginForm';
+import RegisterForm from './components/forms/RegisterForm';
+
 function App() {
-    const [text, setText] = useState("");
-
-    useEffect(() => {
-        fetch("/hello").then(
-            (res) => res.text()
-        ).then(
-            (data) => {
-                setText(data);
-            });
-    }, []);
-
     return (
         <div className="App">
-            {text}
+            <Router>
+                <Routes>
+                    <Route path="/login" element={<LoginForm />} />
+                    <Route path="/register" element={<RegisterForm />} />
+                </Routes>
+            </Router>
         </div>
     );
 }
