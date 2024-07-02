@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '@popperjs/core';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
-import Login from 'client/src/pages/Login'
+import Login from './pages/Login/Login.js'
 
 function App() {
     return (
