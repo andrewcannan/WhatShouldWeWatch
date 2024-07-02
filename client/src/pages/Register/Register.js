@@ -10,7 +10,7 @@ const Register = () => {
             <div className="form-wrapper">
                 <h1 className="mb-3">Create Account</h1>
                 <RegisterForm />
-                <p>Already a Member? <Link to='/login'>Login Here!</Link></p>
+                <p>Already a Member? <Link to='/login'>Sign in Here!</Link></p>
             </div>
         </div>
     )
