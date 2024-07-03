@@ -29,11 +29,9 @@ const LoginForm = () => {
 
             if (response.ok) {
                 const data = await response.json();
-                console.log(data.message)
                 showSuccessToast(data.message);
             } else {
                 const errorData = await response.json();
-                console.log(errorData.error)
                 showErrorToast(errorData.error);
                 
             }
