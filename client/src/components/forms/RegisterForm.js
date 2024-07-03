@@ -19,8 +19,7 @@ const RegisterForm = () => {
         const { username, password, confirmPassword } = formData;
 
         if (password !== confirmPassword) {
-            // change style of input, add warning to user, remove alert
-            alert('Passwords do not match');
+            showErrorToast('Passwords do not match');
             return;
         }
 
