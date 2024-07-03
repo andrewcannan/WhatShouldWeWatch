@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import showToast from '../ToastHelper.js'
+import { showSuccessToast, showErrorToast } from '../ToastHelper.js'
 
 
 const LoginForm = () => {
@@ -29,14 +29,16 @@ const LoginForm = () => {
 
             if (response.ok) {
                 const data = await response.json();
-                showToast(data.message);
+                console.log(data.message)
+                showSuccessToast(data.message);
             } else {
-                const errorData = response.json();
-                showToast(errorData.message);
+                const errorData = await response.json();
+                console.log(errorData.error)
+                showErrorToast(errorData.error);
                 
             }
         } catch(error) {
-            showToast('An unexpected error occurred.');
+            showErrorToast('An unexpected error occurred.');
             console.error(error);
         }
     }
