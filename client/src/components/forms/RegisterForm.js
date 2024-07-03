@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import showToast from "../ToastHelper";
 
 
 const RegisterForm = () => {
@@ -34,17 +35,15 @@ const RegisterForm = () => {
             });
 
             if (response.ok) {
-                // add success toast, remove console log, remove alert
                 const data = await response.json();
-                console.log('Registration Successful:', data);
+                showToast(data.message);
             } else {
-                // add error toast, remove console error, remove alert
                 const errorData = await response.json();
-                console.error('Registration Failed:', errorData)
+                showToast(errorData.message);
             }
         } catch(error) {
-            // add unexpected error toast
-            console.error('An error occured:', error);
+            showToast('An unexpected error occurred.');
+            console.error(error);
         }
     };
 
