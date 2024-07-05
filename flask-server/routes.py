@@ -58,7 +58,7 @@ def logout():
     return jsonify({'message': 'Logged out successfully.'}), 200
 
 
-@app.roue('/getGroups')
+@app.route('/getGroups')
 def get_groups():
     user = User.query.filter_by(username=session['user']).first()
     if not user:
