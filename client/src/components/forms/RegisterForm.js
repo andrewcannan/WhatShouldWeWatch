@@ -87,7 +87,7 @@ const RegisterForm = () => {
             <div className="mb-3">
             {passwordErrors.length > 0 && (
                     <small id="passwordHelpBlock" className="form-text text-muted">
-                        <i className='fa-regular fa-circle-xmark' style={{ marginRight: '8px', color: '#b10000' }}></i><span style={{color: '#b10000'}}>{passwordErrors[0]}</span>
+                        <strong><i className='fa-regular fa-circle-xmark' style={{ marginRight: '8px', color: '#b10000' }}></i><span style={{color: '#b10000'}}>{passwordErrors[0]}</span></strong>
                     </small>
                 )}
             </div>
