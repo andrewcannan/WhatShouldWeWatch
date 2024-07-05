@@ -58,6 +58,25 @@ def logout():
     return jsonify({'message': 'Logged out successfully.'}), 200
 
 
+@app.roue('/getGroups')
+def get_groups():
+    user = User.query.filter_by(username=session['user']).first()
+    if not user:
+        return jsonify({'error': 'Unauthorized'}), 401
+    
+    groups = user.groups
+    
+    groups_list = [
+        {
+            'name': group.group_name,
+            'avatar': group.avatar.name
+        }
+        for group in groups
+    ]
+    
+    return jsonify({'groups', groups_list})
+    
+
 # Callback Functions
 
 def is_password_valid(string):
