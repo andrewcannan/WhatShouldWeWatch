@@ -7,6 +7,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 import Login from './pages/Login/Login.js'
 import Register from './pages/Register/Register.js'
+import Groups from './pages/Groups/Groups.js'
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
                 <Routes>
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
+                    <Route path="/groups" element={<Groups />} />
                 </Routes>
             </Router>
         </div>
