@@ -50,20 +50,20 @@ const GroupsList = () => {
             <div className='card-deck'>
                 {groups.map((group) => (
                     <div className="card">
-                        <img className="card-img-top" src={`./assets/images/${group.avatar}.jpg`} alt="Group avatar"></img>
+                        <img className="card-img-top" src={`../../assets/images/${group.avatar}.jpg`} alt="Group avatar"></img>
                         <div className="card-body">
                             <p className="card-text">{group.name}</p>
                         </div>
                     </div>
                 ))}
                 <div className="card">
-                        <img className="card-img-top" src={'./assets/images/createGroup.jpg'} alt="Create Group avatar"></img>
+                        <img className="card-img-top" src={'../../assets/images/createGroup.jpg'} alt="Create Group avatar"></img>
                         <div className="card-body">
                             <p className="card-text">Create Group</p>
                         </div>
                     </div>
                 <div className="card">
-                    <img className="card-img-top" src={'./assets/images/joinGroup.jpg'} alt="Join Group avatar"></img>
+                    <img className="card-img-top" src={'../../assets/images/joinGroup.jpg'} alt="Join Group avatar"></img>
                     <div className="card-body">
                         <p className="card-text">Join Group</p>
                     </div>
