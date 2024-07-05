@@ -26,9 +26,17 @@ const GroupsList = () => {
                 method: 'GET',
                 credentials: 'include'
             });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                showErrorToast(errorData.error)
+                throw new Error(errorData)
+            }
+
             const data = await response.json();
             setGroups(data.groups);
-        } catch (error) {
+        }
+        catch (error) {
             showErrorToast('An unexpected error occurred.');
             console.error(error);
         }
