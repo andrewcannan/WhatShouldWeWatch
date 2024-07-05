@@ -1,7 +1,7 @@
-export const getCookie = (name) => {
+export const getSessionCookie = () => {
         const cookies = document.cookie
           .split("; ")
-          .find((row) => row.startsWith(`${name}=`));
+          .find((row) => row.startsWith('session='));
        
-        return cookies ? cookies.split("=")[1] : null;
+        return cookies ? true: false;
 };
