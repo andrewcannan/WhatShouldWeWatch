@@ -36,7 +36,7 @@ class Group(db.Model):
     group_name = db.Column(db.String, nullable=False)
     group_code = db.Column(db.Integer, nullable=False)
     avatar = db.Column(db.Enum('avatar1', 'avatar2', 'avatar3', 'avatar4', 'avatar5',
-                               'avatar6', 'avatar7', 'avatar8', 'avatar9', 'avatar10', name='avatar_enum'), nullable=False)
+                               'avatar6', 'avatar7', 'avatar8', 'avatar9', name='avatar_enum'), nullable=False)
     shows = db.relationship('Show', secondary=groups_shows, backref=db.backref('groups', lazy='dynamic'), cascade="all, delete")
 
     def __repr__(self):
