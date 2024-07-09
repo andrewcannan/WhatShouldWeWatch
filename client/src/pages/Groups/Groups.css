@@ -6,7 +6,25 @@
     width: 100%;
     align-items: center;
     justify-content: center;
-    background-color: #333333;
+    background-color: #000;
     font-family: 'Roboto';
     color: #fff;
+}
+
+.groups .card {
+    background-color: #000;
+    color: #fff;
+    align-items: center;
+    margin: 10px;
+}
+
+.groups .card-img-top {
+    background-color: #000;
+    height: 10vh;
+    width: 10vh;
+    object-fit: cover;
+}
+
+.groups .card-deck {
+    display: flex;
 }
