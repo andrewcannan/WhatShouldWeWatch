@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { showSuccessToast, showErrorToast } from '../ToastHelper.js'
+import { useNavigate } from 'react-router-dom';
+
 
 
 const LoginForm = () => {
+    const navigate = useNavigate();
     const [ formData, setFormdata ] = useState({
         username: '',
         password: ''
@@ -30,6 +33,7 @@ const LoginForm = () => {
             if (response.ok) {
                 const data = await response.json();
                 showSuccessToast(data.message);
+                navigate('/groups');
             } else {
                 const errorData = await response.json();
                 showErrorToast(errorData.error);
