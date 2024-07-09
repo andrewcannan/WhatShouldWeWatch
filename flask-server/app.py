@@ -10,6 +10,7 @@ load_dotenv()
 app = Flask(__name__)
 
 app.config["SECRET_KEY"] = os.getenv("FLASK_SECRET_KEY")
+app.config['SESSION_COOKIE_HTTPONLY'] = False
 
 app.config['SQLALCHEMY_DATABASE_URI'] = (
     f"postgresql://{os.getenv('PGUSER')}:{os.getenv('PGPASSWORD')}"
