@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getSessionCookie } from './cookieUtil';
+import { getSessionCookie } from './CookieUtil';
 import { useNavigate } from 'react-router-dom';
 import { showErrorToast } from './ToastHelper';
 
