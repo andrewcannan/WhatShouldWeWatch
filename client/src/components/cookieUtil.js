@@ -1,7 +1,7 @@
 export const getSessionCookie = () => {
-        const cookies = document.cookie
+        const cookie = document.cookie
           .split("; ")
           .find((row) => row.startsWith('session='));
        
-        return cookies ? true: false;
+        return cookie ? true: false;
 };
