@@ -60,9 +60,11 @@ def logout():
 
 @app.route('/getGroups')
 def get_groups():
-    user = User.query.filter_by(username=session['user']).first()
-    if not user:
+    if 'user' not in session:
         return jsonify({'error': 'Unauthorized'}), 401
+    
+    username = session['user']
+    user = User.query.filter_by(username=username).first()
     
     groups = user.groups
     
@@ -74,7 +76,7 @@ def get_groups():
         for group in groups
     ]
     
-    return jsonify({'groups', groups_list})
+    return jsonify({'groups': groups_list})
     
 
 # Callback Functions
