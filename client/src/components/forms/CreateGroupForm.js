@@ -14,7 +14,7 @@ import createGroup from '../../assets/images/createGroup.jpg'
 
 
 const CreateGroupForm = () => {
-    const navigate = useNavigate;
+    const navigate = useNavigate();
     const [ formData, setFormData ] = useState({
         avatar: '',
         groupName: ''
@@ -62,7 +62,7 @@ const CreateGroupForm = () => {
                 </div>
                 <div className="d-flex justify-content-between">
                     <button type="submit" className="btn btn-danger">Create</button>
-                    <button type="button" className="btn btn-outline-light" onClick={navigate('/groups')}>Cancel</button>
+                    <button type="button" className="btn btn-outline-light" onClick={() => navigate('/groups')}>Cancel</button>
                 </div>
             </form>
 
