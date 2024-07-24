@@ -52,16 +52,18 @@ const CreateGroupForm = () => {
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                         <label className="form-label">Select Avatar:</label>
-                        <div data-bs-toggle="modal" data-bs-target="#avatarModal" style={{ cursor: 'pointer', border: '1px solid #000', width: '100px', height: '100px' }}>
-                            {formData.avatar ? <img src={avatars[formData.avatar]} alt={formData.avatar} width="100" height="100" /> : <img src={createGroup} alt='Create group avatar' width="100" height="100" />}
+                        <div data-bs-toggle="modal" data-bs-target="#avatarModal">
+                            {formData.avatar ? <img className="avatar-image" src={avatars[formData.avatar]} alt={formData.avatar}/> : <img className="avatar-image" src={createGroup} alt='Create group avatar'/>}
                         </div>
                     </div>
                 <div className="form-floating mb-3">
                     <input type="text" className="form-control" id="groupName" value={formData.groupName} onChange={handleChange} placeholder="Group Name" required></input>
                     <label htmlFor="groupName">Group Name</label>
                 </div>
-                <button type="submit" className="btn btn-danger mb-3">Create</button>
-                <button type="button" className="btn btn-outline-secondary" onClick={navigate('/groups')}>Cancel</button>
+                <div className="d-flex justify-content-between">
+                    <button type="submit" className="btn btn-danger">Create</button>
+                    <button type="button" className="btn btn-outline-light" onClick={navigate('/groups')}>Cancel</button>
+                </div>
             </form>
 
             <div className="modal fade" id="avatarModal" tabIndex="-1" aria-labelledby="avatarModalLabel" aria-hidden="true">
@@ -74,8 +76,8 @@ const CreateGroupForm = () => {
                         <div className="modal-body">
                             <div className="d-flex flex-wrap">
                                 {Object.keys(avatars).map((image, index) => (
-                                    <div key={index} onClick={() => handleImageSelect(image)} style={{ cursor: 'pointer', margin: '10px' }}>
-                                        <img src={avatars[image]} alt={image} width="100" height="100" />
+                                    <div className="avatar-select" key={index} onClick={() => handleImageSelect(image)}>
+                                        <img className="avatar-image" src={avatars[image]} alt={image}/>
                                     </div>
                                 ))}
                             </div>
