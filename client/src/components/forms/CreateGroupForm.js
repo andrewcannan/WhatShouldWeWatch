@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { showSuccessToast, showErrorToast } from '../ToastHelper.js'
 
 import avatar1 from '../../assets/images/avatar1.jpg';
 import avatar2 from '../../assets/images/avatar2.jpg';
@@ -41,11 +42,39 @@ const CreateGroupForm = () => {
         document.querySelector('.btn-close').click();
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Form submitted:', formData);
-        // Handle form submission logic here
-    };
+
+        if (!formData.avatar) {
+            return
+        }
+
+        const form = new FormData();
+        for (const key in formData) {
+            form.append(key, formData[key]);
+        }
+
+        try {
+            const response = await fetch('/create_group', {
+                method: 'POST',
+                body: form
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                showSuccessToast(data.message);
+                navigate('/groups');
+            } else {
+                const errorData = await response.json();
+                showErrorToast(errorData.error);
+                
+            }
+        } catch(error) {
+            showErrorToast('An unexpected error occurred.');
+            console.error(error);
+        }
+    }
+
 
     return(
         <div className="create-group-form">
