@@ -81,7 +81,7 @@ def get_groups():
     return jsonify({'groups': groups_list})
 
 
-@app.route('/createGroup', methods=['POST'])
+@app.route('/create_group', methods=['POST'])
 def create_group():
     if 'user' not in session:
         return jsonify({'error': 'Unauthorized'}), 401
