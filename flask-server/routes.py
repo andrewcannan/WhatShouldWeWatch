@@ -65,15 +65,14 @@ def get_groups():
     if 'user' not in session:
         return jsonify({'error': 'Unauthorized'}), 401
     
-    username = session['user']
-    user = User.query.filter_by(username=username).first()
+    user = User.query.filter_by(username=session['user']).first()
     
     groups = user.groups
     
     groups_list = [
         {
             'name': group.group_name,
-            'avatar': group.avatar.name
+            'avatar': group.avatar
         }
         for group in groups
     ]
@@ -86,17 +85,18 @@ def create_group():
     if 'user' not in session:
         return jsonify({'error': 'Unauthorized'}), 401
     
-    user = session['user']
+    user = User.query.filter_by(username=session['user']).first()
     new_group_code = generate_group_code()
     
     new_group = Group(
-        created_by = user,
+        created_by = user.id,
         group_name = request.form.get('groupName').lower(),
         group_code = new_group_code,
         avatar = request.form.get('avatar').lower()
     )
     
     db.session.add(new_group)
+    user.groups.append(new_group)
     db.session.commit()
 
     return jsonify({'message': 'Group created succesfully.'}), 201
