@@ -1,7 +1,9 @@
 from flask import request, jsonify, session
 from app import app, db
-from models import User
+from models import User, Group
 from werkzeug.security import generate_password_hash, check_password_hash
+import string
+import random
 
 
 
@@ -58,7 +60,7 @@ def logout():
     return jsonify({'message': 'Logged out successfully.'}), 200
 
 
-@app.route('/getGroups')
+@app.route('/getGroups', methods=['GET'])
 def get_groups():
     if 'user' not in session:
         return jsonify({'error': 'Unauthorized'}), 401
@@ -77,6 +79,27 @@ def get_groups():
     ]
     
     return jsonify({'groups': groups_list})
+
+
+@app.route('/createGroup', methods=['POST'])
+def create_group():
+    if 'user' not in session:
+        return jsonify({'error': 'Unauthorized'}), 401
+    
+    user = session['user']
+    new_group_code = generate_group_code()
+    
+    new_group = Group(
+        created_by = user,
+        group_name = request.form.get('groupName').lower(),
+        group_code = new_group_code,
+        avatar = request.form.get('avatar').lower()
+    )
+    
+    db.session.add(new_group)
+    db.session.commit()
+
+    return jsonify({'message': 'Group created succesfully.'}), 201
     
 
 # Callback Functions
@@ -95,3 +118,11 @@ def is_password_valid(string):
         not any(char.isdigit() for char in string)):
         return False
     return True
+
+def generate_group_code(length=5):
+    """
+    Generates a string of 5 random characters from a string of all lowercase and uppercase letters
+    """
+    characters = string.ascii_letters
+    group_code = ''.join(random.choice(characters) for _ in range(length))
+    return group_code
