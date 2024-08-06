@@ -87,8 +87,8 @@ const CreateGroupForm = () => {
     return(
         <div className="create-group-form">
             <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                        <label className="form-label">Select Avatar:</label>
+                <div className="mb-5">
+                        <label className="form-label mb-3">Select Avatar:</label>
                         <div data-bs-toggle="modal" data-bs-target="#avatarModal">
                             {formData.avatar ? <img className="avatar-image" src={avatars[formData.avatar]} alt={formData.avatar}/> : <img className="avatar-image" src={createGroup} alt='Create group avatar'/>}
                         </div>
