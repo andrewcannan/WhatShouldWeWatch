@@ -69,7 +69,7 @@ const GroupsList = () => {
             </h1>
             <div className='card-deck'>
                 {groups.map((group) => (
-                    <div className="card" key={group.id} onClick={() => navigate(`/groups/${group.name}`)}>
+                    <div className="card" key={group.id} onClick={() => navigate(`/groups/${group.id}`)}>
                         <img className="card-img-top" src={avatars[group.avatar]} alt={`Group ${group.id} avatar`}></img>
                         <div className="card-body">
                             <p className="card-text">{group.name}</p>
