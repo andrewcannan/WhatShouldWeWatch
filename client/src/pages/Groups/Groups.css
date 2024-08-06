@@ -15,7 +15,8 @@
     background-color: #000;
     color: #fff;
     align-items: center;
-    margin: 10px;
+    cursor: pointer;
+    margin-bottom: 40px;
 }
 
 .groups .card-img-top {
@@ -25,6 +26,6 @@
     object-fit: cover;
 }
 
-.groups .card-deck {
-    display: flex;
+.groups h1 {
+    margin-bottom: 40px;
 }

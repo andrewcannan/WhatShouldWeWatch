@@ -63,30 +63,36 @@ const GroupsList = () => {
     }
 
     return (
-        <div>
+        <div className='container'>
             <h1 className='text-center'>
                 Welcome back!
             </h1>
-            <div className='card-deck'>
+            <div className='row'>
                 {groups.map((group) => (
-                    <div className="card" key={group.id} onClick={() => navigate(`/groups/${group.id}`)}>
+                    <div className='col-6 col-sm-4 col-xl-3' key={group.id}>
+                    <div className="card" onClick={() => navigate(`/groups/${group.id}`)}>
                         <img className="card-img-top" src={avatars[group.avatar]} alt={`Group ${group.id} avatar`}></img>
                         <div className="card-body">
                             <p className="card-text text-center">{group.name}</p>
                         </div>
                     </div>
+                    </div>
                 ))}
+                <div className='col-6 col-sm-4 col-xl-3'>
                 <div className="card" onClick={() => navigate('/create-group')}>
                     <img className="card-img-top" src={createGroup} alt="Create Group avatar"></img>
                     <div className="card-body">
                         <p className="card-text text-center">Create Group</p>
                     </div>
                 </div>
+                </div>
+                <div className='col-6 col-sm-4 col-xl-3'>
                 <div className="card" onClick={() => navigate('/join-group')}>
                     <img className="card-img-top" src={joinGroup} alt="Join Group avatar"></img>
                     <div className="card-body">
                         <p className="card-text text-center">Join Group</p>
                     </div>
+                </div>
                 </div>
             </div>
         </div>
