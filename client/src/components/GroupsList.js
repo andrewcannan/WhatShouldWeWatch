@@ -72,20 +72,20 @@ const GroupsList = () => {
                     <div className="card" key={group.id} onClick={() => navigate(`/groups/${group.id}`)}>
                         <img className="card-img-top" src={avatars[group.avatar]} alt={`Group ${group.id} avatar`}></img>
                         <div className="card-body">
-                            <p className="card-text">{group.name}</p>
+                            <p className="card-text text-center">{group.name}</p>
                         </div>
                     </div>
                 ))}
                 <div className="card" onClick={() => navigate('/create-group')}>
                     <img className="card-img-top" src={createGroup} alt="Create Group avatar"></img>
                     <div className="card-body">
-                        <p className="card-text">Create Group</p>
+                        <p className="card-text text-center">Create Group</p>
                     </div>
                 </div>
                 <div className="card" onClick={() => navigate('/join-group')}>
                     <img className="card-img-top" src={joinGroup} alt="Join Group avatar"></img>
                     <div className="card-body">
-                        <p className="card-text">Join Group</p>
+                        <p className="card-text text-center">Join Group</p>
                     </div>
                 </div>
             </div>
