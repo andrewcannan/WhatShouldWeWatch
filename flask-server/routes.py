@@ -128,7 +128,7 @@ def join_group():
         
         group = Group.query.filter(
             Group.group_code == group_code
-        )
+        ).first()
         
         if not group:
             return jsonify({'error': 'Group not found.'}), 404
@@ -137,7 +137,8 @@ def join_group():
             'id': group.id,
             'created_by': group.created_by,
             'group_name': group.group_name,
-            'group_code': group.group_code
+            'group_code': group.group_code,
+            'avatar': group.avatar
         }
         
         return jsonify({'message': 'Group found.', 'group': found_group})
