@@ -62,6 +62,16 @@ const GroupsList = () => {
         }
     }
 
+    const cardClassName = () => {
+        if (groups.length === 1) {
+            return 'col-6 col-sm-4';
+        } else if (groups.length > 1) {
+            return ' col-6 col-sm-4 col-xl-3';
+        } else {
+            return 'col-6';
+        }
+    }
+
     return (
         <div className='container'>
             <h1 className='text-center'>
@@ -69,7 +79,7 @@ const GroupsList = () => {
             </h1>
             <div className='row'>
                 {groups.map((group) => (
-                    <div className='col-6 col-sm-4 col-xl-3' key={group.id}>
+                    <div className={cardClassName()} key={group.id}>
                     <div className="card" onClick={() => navigate(`/groups/${group.id}`)}>
                         <img className="card-img-top" src={avatars[group.avatar]} alt={`Group ${group.id} avatar`}></img>
                         <div className="card-body">
@@ -78,7 +88,7 @@ const GroupsList = () => {
                     </div>
                     </div>
                 ))}
-                <div className='col-6 col-sm-4 col-xl-3'>
+                <div className={cardClassName()}>
                 <div className="card" onClick={() => navigate('/create-group')}>
                     <img className="card-img-top" src={createGroup} alt="Create Group avatar"></img>
                     <div className="card-body">
@@ -86,7 +96,7 @@ const GroupsList = () => {
                     </div>
                 </div>
                 </div>
-                <div className='col-6 col-sm-4 col-xl-3'>
+                <div className={cardClassName()}>
                 <div className="card" onClick={() => navigate('/join-group')}>
                     <img className="card-img-top" src={joinGroup} alt="Join Group avatar"></img>
                     <div className="card-body">
