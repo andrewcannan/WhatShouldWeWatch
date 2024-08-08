@@ -62,6 +62,10 @@ def logout():
 
 @app.route('/getGroups', methods=['GET'])
 def get_groups():
+    """
+    Returns a list of groups user is a member of.
+    Returns unauthorized if user not logged in.
+    """
     if 'user' not in session:
         return jsonify({'error': 'Unauthorized'}), 401
     
@@ -82,6 +86,10 @@ def get_groups():
 
 @app.route('/create_group', methods=['POST'])
 def create_group():
+    """
+    Creates new group in db, and adds relationship to join table.
+    Returns unauthorized if user not logged in. 
+    """
     if 'user' not in session:
         return jsonify({'error': 'Unauthorized'}), 401
     
@@ -104,6 +112,11 @@ def create_group():
 
 @app.route('/join_group', methods=['GET', 'POST'])
 def join_group():
+    """
+    GET method returns group found in table from group code.
+    POST method adds user relationship to join table.
+    Returns unauthorized if user not logged in.
+    """
     if 'user' not in session:
         return jsonify({'error': 'Unauthorized'}), 401
     
@@ -128,6 +141,28 @@ def join_group():
         }
         
         return jsonify({'message': 'Group found.', 'group': found_group})
+    
+    elif request.method == 'POST':
+        group_code = request.form.get('groupCode')
+        user = User.query.filter_by(username=session['user']).first()
+        
+        if not group_code:
+            return jsonify({'error': 'Group code required.'}), 400
+        
+        group = Group.query.filter(
+            Group.group_code == group_code
+        )
+        
+        if not group:
+            return jsonify({'error': 'Group not found.'}), 404
+        
+        if user in group.users:
+            return jsonify({'error': 'User already in group.'}), 400
+        
+        group.users.append(user)
+        db.session.commit()
+        
+        return jsonify({'message': 'Successfully joined group.'}), 200
     
 
 # Callback Functions
