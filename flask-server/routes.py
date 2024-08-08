@@ -100,6 +100,34 @@ def create_group():
     db.session.commit()
 
     return jsonify({'message': 'Group created succesfully.'}), 201
+
+
+@app.route('/join_group', methods=['GET', 'POST'])
+def join_group():
+    if 'user' not in session:
+        return jsonify({'error': 'Unauthorized'}), 401
+    
+    if request.method == 'GET':
+        group_code = request.args.get('groupCode')
+        
+        if not group_code:
+            return jsonify({'error': 'Group code required.'}), 400
+        
+        group = Group.query.filter(
+            Group.group_code == group_code
+        )
+        
+        if not group:
+            return jsonify({'error': 'Group not found.'}), 404
+        
+        found_group = {
+            'id': group.id,
+            'created_by': group.created_by,
+            'group_name': group.group_name,
+            'group_code': group.group_code
+        }
+        
+        return jsonify({'message': 'Group found.', 'group': found_group})
     
 
 # Callback Functions
