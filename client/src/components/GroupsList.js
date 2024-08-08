@@ -2,34 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { getSessionCookie } from './CookieUtil';
 import { useNavigate } from 'react-router-dom';
 import { showErrorToast } from './ToastHelper';
-
-import avatar1 from '../assets/images/avatar1.jpg';
-import avatar2 from '../assets/images/avatar2.jpg';
-import avatar3 from '../assets/images/avatar3.jpg';
-import avatar4 from '../assets/images/avatar4.jpg';
-import avatar5 from '../assets/images/avatar5.jpg';
-import avatar6 from '../assets/images/avatar6.jpg';
-import avatar7 from '../assets/images/avatar7.jpg';
-import avatar8 from '../assets/images/avatar8.jpg';
-import avatar9 from '../assets/images/avatar9.jpg';
-import createGroup from '../assets/images/createGroup.jpg'
-import joinGroup from '../assets/images/joinGroup.jpg';
-
+import avatars from './Avatars';
 
 const GroupsList = () => {
     const navigate = useNavigate();
     const [ groups, setGroups ] = useState([]);
-    const avatars = {
-        avatar1,
-        avatar2,
-        avatar3,
-        avatar4,
-        avatar5,
-        avatar6,
-        avatar7,
-        avatar8,
-        avatar9
-    }
 
     useEffect(() => {
         if (!getSessionCookie()) {
@@ -90,7 +67,7 @@ const GroupsList = () => {
                 ))}
                 <div className={cardClassName()}>
                 <div className="card" onClick={() => navigate('/create-group')}>
-                    <img className="card-img-top" src={createGroup} alt="Create Group avatar"></img>
+                    <img className="card-img-top" src={avatars.createGroup} alt="Create Group avatar"></img>
                     <div className="card-body">
                         <p className="card-text text-center">Create Group</p>
                     </div>
@@ -98,7 +75,7 @@ const GroupsList = () => {
                 </div>
                 <div className={cardClassName()}>
                 <div className="card" onClick={() => navigate('/join-group')}>
-                    <img className="card-img-top" src={joinGroup} alt="Join Group avatar"></img>
+                    <img className="card-img-top" src={avatars.joinGroup} alt="Join Group avatar"></img>
                     <div className="card-body">
                         <p className="card-text text-center">Join Group</p>
                     </div>
