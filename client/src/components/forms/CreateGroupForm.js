@@ -2,18 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { showSuccessToast, showErrorToast } from '../ToastHelper.js'
 import { getSessionCookie } from '../CookieUtil';
-
-import avatar1 from '../../assets/images/avatar1.jpg';
-import avatar2 from '../../assets/images/avatar2.jpg';
-import avatar3 from '../../assets/images/avatar3.jpg';
-import avatar4 from '../../assets/images/avatar4.jpg';
-import avatar5 from '../../assets/images/avatar5.jpg';
-import avatar6 from '../../assets/images/avatar6.jpg';
-import avatar7 from '../../assets/images/avatar7.jpg';
-import avatar8 from '../../assets/images/avatar8.jpg';
-import avatar9 from '../../assets/images/avatar9.jpg';
-import createGroup from '../../assets/images/createGroup.jpg'
-
+import avatars from '../Avatars.js'
 
 const CreateGroupForm = () => {
     const navigate = useNavigate();
@@ -21,17 +10,6 @@ const CreateGroupForm = () => {
         avatar: '',
         groupName: ''
     });
-    const avatars = {
-        avatar1,
-        avatar2,
-        avatar3,
-        avatar4,
-        avatar5,
-        avatar6,
-        avatar7,
-        avatar8,
-        avatar9
-    }
 
     useEffect(() => {
         if (!getSessionCookie()) {
@@ -90,7 +68,7 @@ const CreateGroupForm = () => {
                 <div className="mb-5">
                         <label className="form-label mb-3">Select Avatar:</label>
                         <div data-bs-toggle="modal" data-bs-target="#avatarModal">
-                            {formData.avatar ? <img className="avatar-image" src={avatars[formData.avatar]} alt={formData.avatar}/> : <img className="avatar-image" src={createGroup} alt='Create group avatar'/>}
+                            {formData.avatar ? <img className="avatar-image" src={avatars[formData.avatar]} alt={formData.avatar}/> : <img className="avatar-image" src={avatars.createGroup} alt='Create group avatar'/>}
                         </div>
                     </div>
                 <div className="form-floating mb-3">
