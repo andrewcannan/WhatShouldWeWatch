@@ -9,6 +9,7 @@ import Login from './pages/Login/Login.js'
 import Register from './pages/Register/Register.js'
 import Groups from './pages/Groups/Groups.js'
 import CreateGroup from "./pages/CreateGroup/CreateGroup.js";
+import JoinGroup from "./pages/CreateGroup/CJoinGroup.js";
 
 function App() {
     return (
@@ -20,6 +21,7 @@ function App() {
                     <Route path="/register" element={<Register />} />
                     <Route path="/groups" element={<Groups />} />
                     <Route path="/create-group" element={<CreateGroup />} />
+                    <Route path="/join-group" element={<JoinGroup />} />
                 </Routes>
             </Router>
         </div>
