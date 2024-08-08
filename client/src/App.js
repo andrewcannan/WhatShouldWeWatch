@@ -9,7 +9,7 @@ import Login from './pages/Login/Login.js'
 import Register from './pages/Register/Register.js'
 import Groups from './pages/Groups/Groups.js'
 import CreateGroup from "./pages/CreateGroup/CreateGroup.js";
-import JoinGroup from "./pages/CreateGroup/CJoinGroup.js";
+import JoinGroup from "./pages/JoinGroup/JoinGroup.js";
 
 function App() {
     return (
