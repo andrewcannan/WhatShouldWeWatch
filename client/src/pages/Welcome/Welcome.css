@@ -1,0 +1,54 @@
+.welcome {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #000;
+    font-family: 'Roboto';
+    color: #be1423;
+}
+
+.welcome .logo {
+    width: 150px;
+    height: 100px;
+    margin-bottom: 20px;
+    animation-duration: 1.5s;
+    animation-name: slideinLogo;
+    animation-fill-mode: forwards;
+}
+
+@keyframes slideinLogo {
+    from {
+      translate: -150vw 0;
+      scale: 200% 1;
+    }
+  
+    to {
+      translate: 0 0;
+      scale: 100% 1;
+    }
+  }
+
+  .welcome .title {
+    animation-duration: 5s;
+    animation-name: slideinTitle;
+    animation-delay: 1.5s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+    font-size: 32px;
+  }
+
+  @keyframes slideinTitle {
+    from {
+        opacity: 0;
+      }
+    
+      to {
+        opacity: 1;
+      }
+  }
