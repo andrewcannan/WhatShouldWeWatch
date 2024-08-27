@@ -78,8 +78,8 @@ const JoinGroupForm = () => {
         <div>
             { group ? (
                 <div className="group-details">
-                    <img src={avatars[group.avatar]} alt={group.name} className="avatar-image" />
-                    <h3>{group.name}</h3>
+                    <h3 className="mb-3 text-center">{group.group_name}</h3>
+                    <img src={avatars[group.avatar]} alt={group.group_name} className="avatar-image mb-3" />
                     <div className="d-flex justify-content-between">
                         <button className="btn btn-danger" onClick={handleJoinGroup}>Join Group</button>
                         <button className="btn btn-outline-light" onClick={() => setGroup(null)}>Cancel</button>
