@@ -152,7 +152,7 @@ def join_group():
         
         group = Group.query.filter(
             Group.group_code == group_code
-        )
+        ).first()
         
         if not group:
             return jsonify({'error': 'Group not found.'}), 404
