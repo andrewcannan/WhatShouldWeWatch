@@ -35,7 +35,7 @@ const JoinGroupForm = () => {
                 const data = await response.json();
                 showSuccessToast(data.message);
                 setGroup(data.group);
-                setFormData(data.group.group_code);
+                setFormData({groupCode: data.group.group_code});
             } else {
                 const errorData = await response.json();
                 showErrorToast(errorData.error)
