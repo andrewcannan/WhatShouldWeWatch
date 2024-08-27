@@ -1,0 +1,21 @@
+.join-group {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    font-family: 'Roboto';
+    color: #fff;
+}
+
+.join-group .avatar-image {
+    width: 30vh;
+    height: 30vh;
+}
+
+.join-group .form-floating {
+    color: #000;
+}
