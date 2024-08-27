@@ -4,6 +4,7 @@ import { ToastContainer } from 'react-toastify';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@popperjs/core';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+import './App.css'
 
 import Login from './pages/Login/Login.js'
 import Register from './pages/Register/Register.js'
