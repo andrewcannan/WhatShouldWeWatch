@@ -10,9 +10,11 @@
     color: #fff;
     padding-top: 100px;
 }
-.search .form-floating {
-    color: #000;
+
+.search .form-floating input {
+    background-color: #000;
 }
+
 .search .form-wrapper {
     display: flex;
     min-width: 90vw;
@@ -21,6 +23,21 @@
 
 .search .form-wrapper form {
     min-width: 90vw;
+}
+
+.search .form-floating > label::after {
+    background-color: #000 !important;
+    color: #fff !important;
+}
+
+.search .form-floating > label {
+    color: #ffffff79 !important;
+}
+
+.search .form-floating input:focus {
+    background-color: #000;
+    color: #fff;
+    border-color: #fff; 
 }
 
 @media (min-width: 768px) {
