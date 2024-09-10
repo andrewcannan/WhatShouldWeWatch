@@ -180,7 +180,7 @@ def search_tmdb():
     
     tmdb_token = app.config.get('TMDB_TOKEN')
     
-    url = f'https://api.themoviedb.org/3/search/multi?query={search_keyword}&include_adult=false&language=en-US&page=1'
+    url = f'https://api.themoviedb.org/3/search/multi?query={search_keyword}&include_adult=false&language=en-US'
 
     headers = {
         "accept": "application/json",
