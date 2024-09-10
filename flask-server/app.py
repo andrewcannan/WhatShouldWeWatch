@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 app.config["SECRET_KEY"] = os.getenv("FLASK_SECRET_KEY")
 app.config['SESSION_COOKIE_HTTPONLY'] = False
-app.config['TMDB_API_KEY'] = os.getenv('TMDB_API_KEY')
+app.config['TMDB_TOKEN'] = os.getenv('TMDB_TOKEN')
 
 app.config['SQLALCHEMY_DATABASE_URI'] = (
     f"postgresql://{os.getenv('PGUSER')}:{os.getenv('PGPASSWORD')}"
