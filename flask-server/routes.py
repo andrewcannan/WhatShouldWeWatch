@@ -176,9 +176,9 @@ def search_tmdb():
     search_keyword = request.args.get('searchKeyword')
     
     if not search_keyword:
-        return jsonify(['error': 'No search keyword provided']), 400
+        return jsonify({'error': 'No search keyword provided'}), 400
     
-    tmdb_api_key = app.config('TMDB_API_KEY')
+    tmdb_api_key = app.config.get('TMDB_API_KEY')
     
     tmdb_url = f"https://api.themoviedb.org/3/search/multi?api_key={tmdb_api_key}&query={search_keyword}"
 
@@ -187,7 +187,7 @@ def search_tmdb():
     if response.status_code == 200:
         data = response.json()
         
-        filtered_results = [item for item in data['results'] if item['media_type'] in ['movies', 'tv']]
+        filtered_results = [item for item in data['results'] if item['media_type'] in ['movie', 'tv']]
         
         return jsonify({'message': 'Results found.', 'results': filtered_results}), 200
     else:
