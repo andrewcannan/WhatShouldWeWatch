@@ -37,7 +37,7 @@ const SearchForm = ({ onSearchResults }) => {
     return (
         <form onSubmit={handleSearch}>
             <div className="form-floating mb-3">
-                <input type="text" className="form-control" id="searchKeyword" onChange={handleChange} required></input>
+                <input type="text" className="form-control" id="searchKeyword" onChange={handleChange} placeholder="Enter Movie/TV show" required></input>
                 <label htmlFor="searchKeyword">Enter Movie/TV show</label>
             </div>
             <div className="d-flex justify-content-between">
