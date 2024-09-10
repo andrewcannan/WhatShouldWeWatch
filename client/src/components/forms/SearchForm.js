@@ -9,8 +9,7 @@ const SearchForm = ({ onSearchResults }) => {
     const [formData, setFormData] = useState('');
 
     const handleChange = (e) => {
-        const {id, value} = e.target;
-        setFormData({...formData, [id]: value});
+        setFormData(e.target.value);
     };
 
     const handleSearch = async (e) => {
