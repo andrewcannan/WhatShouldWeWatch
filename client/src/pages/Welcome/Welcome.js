@@ -6,19 +6,18 @@ import './Welcome.css'
 
 const Welcome = () => {
     const navigate = useNavigate();
-    const [ isExiting, setIsExiting ] = useState(false);
+
 
     useEffect(() => {
         const timeout = setTimeout(() => {
-            setIsExiting(true);
-            setTimeout(() => navigate('/login'), 500)
+          navigate('/login');
         }, 5000);
-
+      
         return () => clearTimeout(timeout);
-    }, [navigate])
-
+      }, [navigate]);
+      
     return(
-        <div className={`welcome ${isExiting? 'exit' : ''}`}>
+        <div className={'welcome'}>
             <img src={logo} className="logo" alt="What Should We Watch Logo"></img>
             <h1 className='title'>What Should We Watch</h1>
         </div>
