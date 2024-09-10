@@ -1,9 +1,10 @@
-from flask import request, jsonify, session
+from flask import request, jsonify, session, request
 from app import app, db
 from models import User, Group
 from werkzeug.security import generate_password_hash, check_password_hash
 import string
 import random
+import requests
 
 
 
@@ -165,6 +166,33 @@ def join_group():
         
         return jsonify({'message': 'Successfully joined group.'}), 200
     
+    
+@app.route('/search_tmdb', methods=['GET'])
+def search_tmdb():
+    """
+    Builds a url for retrieving data from TMDb using keyword in get request 
+    and our API key. Filters results to remove perosn objects and returns this.
+    """
+    search_keyword = request.args.get('searchKeyword')
+    
+    if not search_keyword:
+        return jsonify(['error': 'No search keyword provided']), 400
+    
+    tmdb_api_key = app.config('TMDB_API_KEY')
+    
+    tmdb_url = f"https://api.themoviedb.org/3/search/multi?api_key={tmdb_api_key}&query={search_keyword}"
+
+    response = requests.get(tmdb_url)
+    
+    if response.status_code == 200:
+        data = response.json()
+        
+        filtered_results = [item for item in data['results'] if item['media_type'] in ['movies', 'tv']]
+        
+        return jsonify({'message': 'Results found.', 'results': filtered_results}), 200
+    else:
+        return jsonify({'error': 'Failed to retrieve search results'}), response.status_code
+
 
 # Callback Functions
 
