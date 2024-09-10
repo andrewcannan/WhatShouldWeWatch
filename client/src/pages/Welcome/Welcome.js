@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect} from 'react';
 import logo from '../../assets/images/logo.png';
 import { useNavigate } from 'react-router-dom';
 
@@ -7,7 +7,6 @@ import './Welcome.css'
 const Welcome = () => {
     const navigate = useNavigate();
 
-
     useEffect(() => {
         const timeout = setTimeout(() => {
           navigate('/login');
@@ -15,7 +14,7 @@ const Welcome = () => {
       
         return () => clearTimeout(timeout);
       }, [navigate]);
-      
+
     return(
         <div className={'welcome'}>
             <img src={logo} className="logo" alt="What Should We Watch Logo"></img>
