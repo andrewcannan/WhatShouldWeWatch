@@ -17,7 +17,7 @@ const SearchForm = ({ onSearchResults }) => {
         e.preventDefault();
 
         try {
-            const response = await fetch(`/search_tmdb?groupCode=${formData}`, {
+            const response = await fetch(`/search_tmdb?searchKeyword=${formData}`, {
                 method: 'GET',
             });
 
