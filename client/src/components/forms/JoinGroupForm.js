@@ -92,8 +92,8 @@ const JoinGroupForm = () => {
                         <label htmlFor="groupCode">Enter Group Code</label>
                     </div>
                     <div className="d-flex justify-content-between">
-                        <button type="submit" className="btn btn-danger">Submit</button>
                         <button type="button" className="btn btn-outline-light" onClick={() => navigate('/groups')}>Cancel</button>
+                        <button type="submit" className="btn btn-danger">Submit</button>
                     </div>
                 </form>
             )}
