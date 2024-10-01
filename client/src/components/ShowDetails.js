@@ -4,10 +4,10 @@ const ShowDetails = ({ item, onCancel}) => {
     return (
         <div className="show-details m-3">
             <div className="row align-items-center">
-                <div className="col-12 col-md-6 mb-3">
+                <div className="col-12 col-md-4 mb-3">
                     <img src={`https://image.tmdb.org/t/p/w500${item.poster_path}`} alt={item.title || item.name} className="img-fluid mx-auto d-block"></img>
                 </div>
-                <div className="col-12 col-md-6">
+                <div className="col-12 col-md-8">
                     <div className="row">
                         <div className="col-12">
                             <p className="display-4">{item.title || item.name}</p>
