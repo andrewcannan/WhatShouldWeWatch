@@ -55,7 +55,7 @@ const LoginForm = () => {
                 <input type="password" className="form-control" id="password" value={formData.password} onChange={handleChange} placeholder="Password" required></input>
                 <label htmlFor="password">Password</label>
             </div>
-            <button type="submit" className="btn btn-danger mb-3">Sign In</button>
+            <button type="submit" className="btn btn-danger mb-3 ms-auto d-block">Sign In</button>
         </form>
     );
 }
