@@ -41,8 +41,8 @@ const SearchForm = ({ onSearchResults }) => {
                 <label htmlFor="searchKeyword">Enter Movie/TV show</label>
             </div>
             <div className="d-flex justify-content-between">
+                <button type="button" className="btn btn-outline-light" onClick={() => navigate('/groups')}>Cancel</button>
                 <button type="submit" className="btn btn-danger">Submit</button>
-                <button type="button" className="btn btn-outline-light" onClick={() => navigate('/')}>Cancel</button>
             </div>
         </form>
     )
