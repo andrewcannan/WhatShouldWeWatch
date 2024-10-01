@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { showSuccessToast, showErrorToast } from '../ToastHelper.js'
-import { getSessionCookie } from '../CookieUtil';
 import avatars from '../Avatars.js'
 
 const CreateGroupForm = () => {
@@ -10,13 +9,6 @@ const CreateGroupForm = () => {
         avatar: '',
         groupName: ''
     });
-
-    useEffect(() => {
-        if (!getSessionCookie()) {
-            showErrorToast("Oops! Please sign in to continue.");
-            navigate('/login');
-        } 
-    }, [navigate]);
 
     const handleChange = (e) => {
         const {id, value} = e.target;
