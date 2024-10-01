@@ -91,7 +91,7 @@ const RegisterForm = () => {
                     </small>
                 )}
             </div>
-            <button type="submit" className="btn btn-danger mb-3">Create</button>
+            <button type="submit" className="btn btn-danger mb-3 ms-auto d-block">Create</button>
         </form>
     );
 };
