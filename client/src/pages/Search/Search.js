@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import {  showErrorToast } from '../../components/ToastHelper.js'
+import { getSessionCookie } from '../../components/CookieUtil.js'
 import SearchForm from '../../components/forms/SearchForm';
 import LogoNav from '../../components/LogoNav';
 import './Search.css'
@@ -8,6 +11,14 @@ import ShowDetails from '../../components/ShowDetails';
 const Search = () => {
     const [ searchResults, setSearchResults ] = useState([]);
     const [ selectedItem, setSelectedItem ] = useState(null);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!getSessionCookie()) {
+            showErrorToast("Oops! Please sign in to continue.");
+            navigate('/login');
+        } 
+    }, [navigate]);
 
     const handleSearchResults = (results) => {
         setSearchResults(results);
