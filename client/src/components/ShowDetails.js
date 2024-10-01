@@ -21,7 +21,7 @@ const ShowDetails = ({ item, onCancel}) => {
                             <p>Rating: {item.vote_average ? item.vote_average.toFixed(1) : 'No rating available'}/10</p>
                         </div>
                     </div>
-                    <div className="row">
+                    <div className="row mb-3">
                         <div className="col-12">
                             <p>{item.overview}</p>
                         </div>
