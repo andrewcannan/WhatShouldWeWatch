@@ -82,7 +82,7 @@ const CreateGroupForm = () => {
                         </div>
                         <div className="modal-body">
                             <div className="d-flex flex-wrap">
-                                {Object.keys(avatars).map((image, index) => (
+                                {Object.keys(avatars).filter(image => image !== 'createGroup' && image !== 'joinGroup').map((image, index) => (
                                     <div className="avatar-select" key={index} onClick={() => handleImageSelect(image)}>
                                         <img className="avatar-image" src={avatars[image]} alt={image}/>
                                     </div>
