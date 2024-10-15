@@ -20,7 +20,7 @@ const GroupShows = () => {
     return (
         <div className='group-shows'>
             <LogoNav />
-            <BottomNav />
+            <BottomNav groupId={groupId}/>
         </div>
     );
 };
