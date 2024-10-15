@@ -13,6 +13,7 @@ import CreateGroup from "./pages/CreateGroup/CreateGroup.js";
 import JoinGroup from "./pages/JoinGroup/JoinGroup.js";
 import Welcome from "./pages/Welcome/Welcome.js";
 import Search from "./pages/Search/Search.js";
+import GroupShows from "./pages/GroupShows/GroupShows.js";
 
 function App() {
     return (
@@ -26,6 +27,7 @@ function App() {
                     <Route path="/groups" element={<Groups />} />
                     <Route path="/create-group" element={<CreateGroup />} />
                     <Route path="/join-group" element={<JoinGroup />} />
+                    <Route path="/groups/:groupId" element={<GroupShows />} />
                     <Route path="/search" element={<Search />} />
                 </Routes>
             </Router>
