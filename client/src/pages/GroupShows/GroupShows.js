@@ -4,6 +4,7 @@ import { getSessionCookie } from '../../components/CookieUtil';
 import { showErrorToast } from '../../components/ToastHelper';
 import LogoNav from '../../components/LogoNav';
 import BottomNav from '../../components/BottomNav';
+import './GroupShows.css'
 
 const GroupShows = () => {
     const navigate = useNavigate();

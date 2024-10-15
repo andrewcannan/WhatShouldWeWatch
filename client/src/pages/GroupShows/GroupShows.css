@@ -1,0 +1,4 @@
+.group-shows .nav-item:hover {
+    background-color: #222222;
+    cursor: pointer;
+}
