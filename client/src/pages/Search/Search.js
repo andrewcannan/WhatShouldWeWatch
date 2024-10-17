@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import {  showErrorToast } from '../../components/ToastHelper.js'
 import { getSessionCookie } from '../../components/CookieUtil.js'
 import SearchForm from '../../components/forms/SearchForm';
@@ -12,6 +12,8 @@ const Search = () => {
     const [ searchResults, setSearchResults ] = useState([]);
     const [ selectedItem, setSelectedItem ] = useState(null);
     const navigate = useNavigate();
+    const location = useLocation();
+    const groupId = location.state?.groupId;
 
     useEffect(() => {
         if (!getSessionCookie()) {
@@ -30,6 +32,10 @@ const Search = () => {
 
     const handleCancel = () => {
         setSelectedItem(null);
+    };
+
+    const handleSubmit = () => {
+        
     };
 
     return(
@@ -56,7 +62,7 @@ const Search = () => {
             )}
 
             {selectedItem && (
-            <ShowDetails item={selectedItem} onCancel={handleCancel} />
+            <ShowDetails item={selectedItem} onCancel={handleCancel} onSubmit={handleSubmit} />
             )}
         </div>
     )
