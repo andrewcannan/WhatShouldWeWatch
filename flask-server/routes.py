@@ -263,3 +263,11 @@ def update_genres():
     if new_genres:
         db.session.add_all(new_genres)
         db.session.commit()
+        
+def genre_mapping():
+    """
+    Maps TMDB ids with genre names based on entries in Genre table in the db.
+    """
+    genres = Genre.query.all()
+    genre_mapping = {genre.tmdb_id: genre.name for genre in genres}
+    return genre_mapping
