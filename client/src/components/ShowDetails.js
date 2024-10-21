@@ -19,7 +19,7 @@ const ShowDetails = ({ item, onCancel, onSubmit}) => {
                                 item.genres.map((genre, index) => (
                                     <span key={index} className="me-3 ps-2 pe-2 bg-secondary rounded-pill mt-3 small">{genre}</span>
                                 ))
-                            ): (<span>No genres available</span>)}
+                            ): (<span className="me-3 ps-2 pe-2 bg-secondary rounded-pill mt-3 small">No genres available</span>)}
                         </div>
                     </div>
                     <div className="row">
