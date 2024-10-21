@@ -27,7 +27,7 @@ const ShowDetails = ({ item, onCancel, onSubmit}) => {
                             <p>Released: {item.release_date ? item.release_date.split('-').reverse().join('-') : 'Unknown'}</p>
                         </div>
                         <div className="col-6 col-md-4">
-                            <p>Rating: {item.vote_average ? item.vote_average.toFixed(1) : 'No rating available'}/10</p>
+                            <p>Rating: {item.vote_average ? (item.vote_average % 1 === 0 ? `${item.vote_average.toFixed(0)}/10` : `${item.vote_average.toFixed(1)}/10`) : 'N/A'}</p>
                         </div>
                     </div>
                     <div className="row mb-3">
