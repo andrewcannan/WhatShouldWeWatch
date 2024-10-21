@@ -1,6 +1,6 @@
 from flask import request, jsonify, session, request
 from app import app, db
-from models import User, Group
+from models import User, Group, Genre
 from werkzeug.security import generate_password_hash, check_password_hash
 import string
 import random
@@ -38,7 +38,7 @@ def register():
 @app.route('/login', methods=['POST'])
 def login():
     """
-    Handles login of user.
+    Handles login of user. Updates genre db table on successful login.
     """
     existing_user = User.query.filter(
         User.username == request.form.get('username').lower()).first()
@@ -46,6 +46,7 @@ def login():
     if existing_user and check_password_hash(
         existing_user.password, request.form.get('password')):
         session['user'] = request.form.get('username').lower()
+        update_genres()
         return jsonify({'message': 'Login Successful.'}), 200
         
     else:
