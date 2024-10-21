@@ -223,3 +223,42 @@ def generate_group_code(length=5):
     characters = string.ascii_letters
     group_code = ''.join(random.choice(characters) for _ in range(length))
     return group_code
+
+def update_genres():
+    """
+    Fetches both movie and TV genres from TMDB and combines them into a dictionary.
+    Compares with genres already stored in the database and adds those that don't already exist.
+    """
+    tmdb_token = app.config('TMDB_TOKEN')
+    headers = {
+        "accept": "application/json",
+        "Authorization": tmdb_token
+    }
+    
+    movie_genre_url = 'https://api.themoviedb.org/3/genre/movie/list?language=en'
+    movie_response = requests.get(movie_genre_url, headers=headers)
+    movie_genres = movie_response.json().get('genres', [])
+    
+    tv_genre_url = 'https://api.themoviedb.org/3/genre/tv/list?language=en'
+    tv_response = requests.get(tv_genre_url, headers=headers)
+    tv_genres = tv_response.json().get('genres', [])
+    
+    combined_genres = {}
+    
+    for genre in movie_genres:
+        combined_genres[genre['id']] = genre['name']
+        
+    for genre in tv_genres:
+        combined_genres[genre['id']] = genre['name']
+        
+    existing_genres = {genre.tmdb_id: genre.name for genre in Genre.query.all()}
+    
+    new_genres = []
+    
+    for genre_id, genre_name in combined_genres.items():
+        if genre_id not in existing_genres:
+            new_genres.append(Genre(tmdb_id=genre_id, name=genre_name))
+            
+    if new_genres:
+        db.session.add_all(new_genres)
+        db.session.commit()
