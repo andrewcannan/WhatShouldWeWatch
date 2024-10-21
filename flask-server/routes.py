@@ -77,6 +77,7 @@ def get_groups():
     
     groups_list = [
         {
+            'id': group.id,
             'name': group.group_name,
             'avatar': group.avatar
         }
