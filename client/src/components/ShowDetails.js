@@ -10,7 +10,16 @@ const ShowDetails = ({ item, onCancel, onSubmit}) => {
                 <div className="col-12 col-md-8">
                     <div className="row">
                         <div className="col-12">
-                            <p className="display-4">{item.title || item.name}</p>
+                            <p className="display-4 mb-0">{item.title || item.name}</p>
+                        </div>
+                    </div>
+                    <div className="row mb-3">
+                        <div className="col-12 d-flex flex-wrap">
+                            {item.genres? (
+                                item.genres.map((genre, index) => (
+                                    <span key={index} className="me-3 ps-2 pe-2 bg-secondary rounded-pill mt-3 small">{genre}</span>
+                                ))
+                            ): (<span>No genres available</span>)}
                         </div>
                     </div>
                     <div className="row">
