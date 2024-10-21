@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom';
 import { showSuccessToast, showErrorToast } from '../ToastHelper.js'
 
 
 
 const SearchForm = ({ onSearchResults, onCancel }) => {
-    const navigate = useNavigate();
     const [formData, setFormData] = useState('');
 
     const handleChange = (e) => {
