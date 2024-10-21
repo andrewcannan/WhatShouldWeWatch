@@ -195,6 +195,12 @@ def search_tmdb():
         
         filtered_results = [item for item in data['results'] if item['media_type'] in ['movie', 'tv']]
         
+        for result in filtered_results:
+            if 'genres' not in result:
+                result['genres'] = []
+                
+            result['genres'].extend([genre_mapping().get(genre_id, 'Unknown Genre') for genre_id in result.get('genre_ids', [])])
+                    
         return jsonify({'message': 'Results found.', 'results': filtered_results}), 200
     else:
         return jsonify({'error': 'Failed to retrieve search results'}), response.status_code
