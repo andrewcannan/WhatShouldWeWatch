@@ -59,3 +59,16 @@ class Show(db.Model):
     def __repr__(self):
         # represents itself in the form of a string
         return f"{self.id} - {self.name} | {self.media_type}"
+    
+    
+class Genre(db.Model):
+    """
+    schema for Genre model
+    """
+    id = db.Column(db.Integer, primary_key=True)
+    tmdb_id = db.Column(db.Integer, nullable=False, unique=True)
+    name = db.Column(db.String, nullable=False)
+    
+    def __repr__(self):
+        # represents itself in the form of a string
+        return f"{self.id} - tmdb_id: {self.tmdb_id} | {self.name}"
