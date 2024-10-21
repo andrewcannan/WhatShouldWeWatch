@@ -30,9 +30,13 @@ const Search = () => {
         setSelectedItem(item);
     };
 
-    const handleCancel = () => {
+    const handleCancelDetails = () => {
         setSelectedItem(null);
     };
+
+    const handleCancelSearch = () => {
+        navigate(`/groups/${groupId}`)
+    }
 
     const handleSubmit = () => {
         
@@ -44,7 +48,7 @@ const Search = () => {
             {!selectedItem && (
             <>
                 <div className='form-wrapper mb-3'>
-                    <SearchForm onSearchResults={handleSearchResults} />
+                    <SearchForm onSearchResults={handleSearchResults} onCancel={handleCancelSearch} />
                 </div>
                 <div>
                     {searchResults.map((item) => (
@@ -62,7 +66,7 @@ const Search = () => {
             )}
 
             {selectedItem && (
-            <ShowDetails item={selectedItem} onCancel={handleCancel} onSubmit={handleSubmit} />
+            <ShowDetails item={selectedItem} onCancel={handleCancelDetails} onSubmit={handleSubmit} />
             )}
         </div>
     )
