@@ -230,7 +230,7 @@ def update_genres():
     Fetches both movie and TV genres from TMDB and combines them into a dictionary.
     Compares with genres already stored in the database and adds those that don't already exist.
     """
-    tmdb_token = app.config('TMDB_TOKEN')
+    tmdb_token = app.config.get('TMDB_TOKEN')
     headers = {
         "accept": "application/json",
         "Authorization": tmdb_token
