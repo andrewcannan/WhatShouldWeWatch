@@ -207,7 +207,7 @@ def search_tmdb():
         return jsonify({'error': 'Failed to retrieve search results'}), response.status_code
 
 
-@app.route('/add_show', methods='POST')
+@app.route('/add_show', methods=['POST'])
 def add_show():
     """
     Retrieves groupId and selectedItem from request.
