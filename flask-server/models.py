@@ -1,4 +1,5 @@
 from app import db
+from sqlalchemy.dialects.postgresql import ARRAY
 
 
 # Association table for User-Group many-to-many relationship
@@ -51,10 +52,12 @@ class Show(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
     description = db.Column(db.Text, nullable=False)
-    pic_url = db.Column(db.String, nullable=False)
-    media_type = db.Column(db.Enum('tv', 'film', name='media_type_enum'), nullable=False)
-    tmdb_genre_id = db.Column(db.Integer, nullable=False)
-    genre_name = db.Column(db.String, nullable=False)
+    poster_path = db.Column(db.String, nullable=True)
+    media_type = db.Column(db.Enum('tv', 'movie', name='media_type_enum'), nullable=False)
+    tmdb_genre_ids = db.Column(ARRAY(db.Integer), nullable=False)
+    genres = db.Column(ARRAY(db.String), nullable=False)
+    vote_average = db.Column(db.Float, nullable=True)
+    release_date = db.Column(db.String, nullable=True)
 
     def __repr__(self):
         # represents itself in the form of a string
