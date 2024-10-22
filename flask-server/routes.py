@@ -220,6 +220,7 @@ def add_show():
     
     group_id = request.json.get('groupId')
     show = request.json.get('selectedItem')
+    print(show)
     
     if not show:
         return jsonify({'error': 'No Movie or TV show selected.'}), 400
@@ -229,7 +230,7 @@ def add_show():
     if not group:
         return jsonify({'error': 'Group not found.'}), 404
     
-    existing_show = Show.query.filter(name=show.title or show.name).first()
+    existing_show = Show.query.filter_by(name=show.get('title') or show.get('name')).first()
     
     if existing_show:
         if existing_show in group.shows:
@@ -240,14 +241,14 @@ def add_show():
         return jsonify({'message': 'Successfully added to watchlist.'}), 200
             
     new_show = Show(
-        name = show.title or show.name,
-        description = show.overview,
-        poster_path = show.poster_path,
-        media_type = show.media_type,
-        tmdb_genre_ids = show.genre_ids,
-        genres = show.genres,
-        vote_average = show.vote_average,
-        release_date = show.release_date
+        name = show.get('title') or show.get('name'),
+        description = show.get('overview'),
+        poster_path = show.get('poster_path'),
+        media_type = show.get('media_type'),
+        tmdb_genre_ids = show.get('genre_ids'),
+        genres = show.get('genres'),
+        vote_average = show.get('vote_average'),
+        release_date = show.get('release_date')
     )
     
     db.session.add(new_show)
