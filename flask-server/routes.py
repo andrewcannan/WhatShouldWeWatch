@@ -209,6 +209,11 @@ def search_tmdb():
 
 @app.route('/add_show', methods='POST')
 def add_show():
+    """
+    Retrieves groupId and selectedItem from request.
+    Creates a new instance of a show.
+    Commits instance to db and creates relationship to the group.
+    """
     if 'user' not in session:
         return jsonify({'error': 'Unauthorized.'}), 401
     
