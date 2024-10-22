@@ -211,6 +211,7 @@ def search_tmdb():
 def add_show():
     """
     Retrieves groupId and selectedItem from request.
+    Checks if show already in db or already associated with group.
     Creates a new instance of a show.
     Commits instance to db and creates relationship to the group.
     """
@@ -221,8 +222,23 @@ def add_show():
     show = request.json.get('selectedItem')
     
     if not show:
-        return jsonify({'error': 'No show selected.'}), 400
+        return jsonify({'error': 'No Movie or TV show selected.'}), 400
     
+    group = Group.query.get(group_id)
+    
+    if not group:
+        return jsonify({'error': 'Group not found.'}), 404
+    
+    existing_show = Show.query.filter(name=show.title or show.name).first()
+    
+    if existing_show:
+        if existing_show in group.shows:
+            return jsonify('error': 'Already in watchlist.'), 400
+        
+        group.shows.append(existing_show)
+        db.session.commit()
+        return jsonify('message': 'Successfully added to watchlist.'), 200
+            
     new_show = Show(
         name = show.title or show.name,
         description = show.overview,
@@ -234,15 +250,11 @@ def add_show():
         release_date = show.release_date
     )
     
-    group = Group.query.get(group_id)
-    if not group:
-        return jsonify({'error': 'Group not found.'}), 404
-    
     db.session.add(new_show)
     group.shows.append(new_show)
     db.session.commit()
     
-    return jsonify({'message': 'Show added sucessfully.'}), 201
+    return jsonify({'message': 'Successfully added to watchlist.'}), 201
 
 
 # Callback Functions
