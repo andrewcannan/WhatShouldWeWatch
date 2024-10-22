@@ -1,6 +1,6 @@
 from flask import request, jsonify, session, request
 from app import app, db
-from models import User, Group, Genre
+from models import User, Group, Genre, Show
 from werkzeug.security import generate_password_hash, check_password_hash
 import string
 import random
@@ -205,6 +205,39 @@ def search_tmdb():
         return jsonify({'message': 'Results found.', 'results': filtered_results}), 200
     else:
         return jsonify({'error': 'Failed to retrieve search results'}), response.status_code
+
+
+@app.route('/add_show', methods='POST')
+def add_show():
+    if 'user' not in session:
+        return jsonify({'error': 'Unauthorized.'}), 401
+    
+    group_id = request.json.get('groupId')
+    show = request.json.get('selectedItem')
+    
+    if not show:
+        return jsonify({'error': 'No show selected.'}), 400
+    
+    new_show = Show(
+        name = show.title or show.name,
+        description = show.overview,
+        poster_path = show.poster_path,
+        media_type = show.media_type,
+        tmdb_genre_ids = show.genre_ids,
+        genres = show.genres,
+        vote_average = show.vote_average,
+        release_date = show.release_date
+    )
+    
+    group = Group.query.get(group_id)
+    if not group:
+        return jsonify({'error': 'Group not found.'}), 404
+    
+    db.session.add(new_show)
+    group.shows.append(new_show)
+    db.session.commit()
+    
+    return jsonify({'message': 'Show added sucessfully.'}), 201
 
 
 # Callback Functions
