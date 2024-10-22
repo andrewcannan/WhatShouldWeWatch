@@ -1,6 +1,6 @@
 import React from "react";
 
-const ShowDetails = ({ item, onCancel, onSubmit}) => {
+const ShowDetails = ({ item, onCancel, onSubmit, buttonText}) => {
     return (
         <div className="show-details m-3">
             <div className="row align-items-center">
@@ -39,7 +39,7 @@ const ShowDetails = ({ item, onCancel, onSubmit}) => {
                         <div className="col-12">
                             <div className="d-flex justify-content-between">
                                 <button type="button" className="btn btn-outline-light" onClick={onCancel}>Cancel</button>
-                                <button type="submit" className="btn btn-danger" onClick={onSubmit}>Add to List</button>
+                                <button type="submit" className="btn btn-danger" onClick={onSubmit}>{buttonText}</button>
                             </div>
                         </div>
                     </div>

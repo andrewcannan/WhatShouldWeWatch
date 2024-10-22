@@ -14,6 +14,7 @@ const Search = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const groupId = location.state?.groupId;
+    const submitButtonText = 'Add to List'
 
     useEffect(() => {
         if (!getSessionCookie()) {
@@ -85,7 +86,7 @@ const Search = () => {
             )}
 
             {selectedItem && (
-            <ShowDetails item={selectedItem} onCancel={handleCancelDetails} onSubmit={handleSubmit} />
+            <ShowDetails item={selectedItem} onCancel={handleCancelDetails} onSubmit={handleSubmit} buttonText={submitButtonText} />
             )}
         </div>
     )
