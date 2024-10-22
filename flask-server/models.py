@@ -53,7 +53,7 @@ class Show(db.Model):
     name = db.Column(db.String, nullable=False)
     description = db.Column(db.Text, nullable=False)
     poster_path = db.Column(db.String, nullable=True)
-    media_type = db.Column(db.Enum('tv', 'movie', name='media_type_enum'), nullable=False)
+    media_type = db.Column(db.String, nullable=False)
     tmdb_genre_ids = db.Column(ARRAY(db.Integer), nullable=False)
     genres = db.Column(ARRAY(db.String), nullable=False)
     vote_average = db.Column(db.Float, nullable=True)
