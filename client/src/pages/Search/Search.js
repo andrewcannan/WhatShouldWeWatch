@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import {  showErrorToast } from '../../components/ToastHelper.js'
+import {  showSuccessToast, showErrorToast } from '../../components/ToastHelper.js'
 import { getSessionCookie } from '../../components/CookieUtil.js'
 import SearchForm from '../../components/forms/SearchForm';
 import LogoNav from '../../components/LogoNav';
@@ -38,8 +38,27 @@ const Search = () => {
         navigate(`/groups/${groupId}`)
     }
 
-    const handleSubmit = () => {
-        
+    const handleSubmit = async () => {
+        try {
+            const response = await fetch('/add_show', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({groupId, selectedItem})
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                showSuccessToast(data.message);
+                navigate(`/groups/${groupId}`)
+            } else {
+                const errorData = await response.json();
+                showErrorToast(errorData.error);
+                
+            }
+        } catch(error) {
+            showErrorToast('An unexpected error occurred.');
+            console.error(error);
+        }
     };
 
     return(
