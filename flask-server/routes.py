@@ -233,11 +233,11 @@ def add_show():
     
     if existing_show:
         if existing_show in group.shows:
-            return jsonify('error': 'Already in watchlist.'), 400
+            return jsonify({'error': 'Already in watchlist.'}), 400
         
         group.shows.append(existing_show)
         db.session.commit()
-        return jsonify('message': 'Successfully added to watchlist.'), 200
+        return jsonify({'message': 'Successfully added to watchlist.'}), 200
             
     new_show = Show(
         name = show.title or show.name,
