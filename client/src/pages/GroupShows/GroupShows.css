@@ -1,4 +1,51 @@
+.group-shows {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100%;
+    min-width: 90%;
+    justify-content: center;
+    background-color: #000;
+    font-family: 'Roboto';
+    color: #fff;
+    padding-top: 100px;
+    overflow-x: hidden;
+    padding-bottom: 50px;
+}
+
+.group-shows .card-deck {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 1rem;
+    scrollbar-width: none;
+    max-width: 90%;
+}
+
+.group-shows .card-deck::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, and Edge: Hides scrollbar */
+}
+
+.group-shows .card {
+    flex: 0 0 auto;
+    width: 200px;
+    cursor: pointer;
+    text-align: center;
+    background-color: #000;
+    color: #fff;
+}
+
 .group-shows .nav-item:hover {
     background-color: #222222;
     cursor: pointer;
+}
+
+.group-shows .row {
+    max-width: 100%;
+}
+
+@media (max-width: 768px) {
+    .group-shows .card {
+       width: 150px;
+    }
 }

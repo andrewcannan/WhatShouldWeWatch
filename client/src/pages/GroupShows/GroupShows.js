@@ -4,12 +4,15 @@ import { getSessionCookie } from '../../components/CookieUtil';
 import { showErrorToast } from '../../components/ToastHelper';
 import LogoNav from '../../components/LogoNav';
 import BottomNav from '../../components/BottomNav';
+import ShowDetails from '../../components/ShowDetails';
 import './GroupShows.css'
 
 const GroupShows = () => {
     const navigate = useNavigate();
     const { groupId } = useParams(); //groupId to be passed to children
     const [ showsByGenre, setShowsByGenre ] = useState({});
+    const [ selectedItem, setSelectedItem ] = useState(null);
+    const submitButtonText = 'Remove'
 
     function groupByGenre(data) {
         const genreMap = {};
@@ -42,8 +45,7 @@ const GroupShows = () => {
     
                 const data = await response.json();
                 const genreData = groupByGenre(data);
-                setShowsByGenre(genreData);
-                
+                setShowsByGenre(genreData);                
             }
             catch (error) {
                 showErrorToast('An unexpected error occurred.');
@@ -61,10 +63,37 @@ const GroupShows = () => {
         } 
     }, [navigate]);
 
+    const handleSelectedItem = (show) => {
+        setSelectedItem(show);
+    };
+
+    const handleCancelDetails = () => {
+        setSelectedItem(null);
+    };
+
 
     return (
         <div className='group-shows'>
             <LogoNav />
+            {!selectedItem && (
+                Object.keys(showsByGenre).map(genre => (
+                    <div key={genre} className='row genre-row mb-3 no-gutters'>
+                        <p className='h3'>{genre}</p>
+                        <div className='card-deck'>
+                            {showsByGenre[genre].map(show => (
+                                <div key={show.id} className='card' onClick={() => handleSelectedItem(show)}>
+                                    <img className='card-img-top' src={`https://image.tmdb.org/t/p/w200${show.poster_path}`} alt={show.title || show.name}></img>
+                                    <p className='h5'>{show.title || show.name}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                ))
+            )};
+
+            {selectedItem && (
+                <ShowDetails item={selectedItem} onCancel={handleCancelDetails} onSubmit={handleSubmit} buttonText={submitButtonText} />
+            )};
             <BottomNav groupId={groupId}/>
         </div>
     );
