@@ -30,7 +30,7 @@ const GroupShows = () => {
     useEffect(() => {
         const getShows = async () => {
             try {
-                const response = await fetch('/getShows', {
+                const response = await fetch(`/getShows?groupId=${groupId}`, {
                     method: 'GET'
                 });
     
@@ -52,7 +52,7 @@ const GroupShows = () => {
         };
 
         getShows();
-    }, []);
+    }, [groupId]);
 
     useEffect(() => {
         if (!getSessionCookie()) {
