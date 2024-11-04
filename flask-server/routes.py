@@ -267,11 +267,11 @@ def get_shows():
     
     group_id = request.args.get('groupId')
     if not group_id:
-        return jsonify('error': 'Group ID required'), 400
+        return jsonify({'error': 'Group ID required'}), 400
     
     group = Group.query.filter_by(id=group_id).first()
     if not group:
-        return jsonify('error': 'Group not found.'), 404
+        return jsonify({'error': 'Group not found.'}), 404
     
     shows = group.shows
     
