@@ -257,6 +257,39 @@ def add_show():
     
     return jsonify({'message': 'Successfully added to watchlist.'}), 201
 
+@app.route('/getShows', methods=['GET'])
+def get_shows():
+    """
+    Returns JSON data of all shows associated with group.
+    """
+    if 'user' not in session:
+        return jsonify({'error': 'Unauthorized'}), 401
+    
+    group_id = request.args.get('groupId')
+    if not group_id:
+        return jsonify('error': 'Group ID required'), 400
+    
+    group = Group.query.filter_by(id=group_id).first()
+    if not group:
+        return jsonify('error': 'Group not found.'), 404
+    
+    shows = group.shows
+    
+    shows_data = [
+        {
+            'name': show.name,
+            'description': show.description,
+            'poster_path': show.poster_path,
+            'media_type': show.media_type,
+            'tmdb_genre_ids': show.tmdb_genre_ids,
+            'genres': show.genres,
+            'vote_average': show.vote_average,
+            'release_date': show.release_date
+        } for show in shows
+    ]
+    
+    return jsonify(shows_data)
+
 
 # Callback Functions
 
