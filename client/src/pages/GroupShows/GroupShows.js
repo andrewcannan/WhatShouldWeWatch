@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getSessionCookie } from '../../components/CookieUtil';
 import { showErrorToast } from '../../components/ToastHelper';
@@ -9,6 +9,7 @@ import './GroupShows.css'
 const GroupShows = () => {
     const navigate = useNavigate();
     const { groupId } = useParams(); //groupId to be passed to children
+    const [ showsByGenre, setShowsByGenre ] = useState({});
 
     useEffect(() => {
         if (!getSessionCookie()) {
