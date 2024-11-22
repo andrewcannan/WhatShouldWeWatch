@@ -32,7 +32,7 @@ const ShowDetails = ({ item, onCancel, onSubmit, buttonText}) => {
                     </div>
                     <div className="row mb-3">
                         <div className="col-12">
-                            <p>{item.overview}</p>
+                            <p>{item.overview || item.description}</p>
                         </div>
                     </div>
                     <div className="row mb-3">
