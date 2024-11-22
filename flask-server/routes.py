@@ -220,7 +220,6 @@ def add_show():
     
     group_id = request.json.get('groupId')
     show = request.json.get('selectedItem')
-    print(show)
     
     if not show:
         return jsonify({'error': 'No Movie or TV show selected.'}), 400
