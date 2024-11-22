@@ -19,7 +19,6 @@
     overflow-x: auto;
     gap: 1rem;
     scrollbar-width: none;
-    max-width: 90%;
 }
 
 .group-shows .card-deck::-webkit-scrollbar {
