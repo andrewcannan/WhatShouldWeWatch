@@ -97,7 +97,7 @@ const GroupShows = () => {
             )};
 
             {selectedItem && (
-                <ShowDetails item={selectedItem} onCancel={handleCancelDetails} showTypeSelect={handleShowType}
+                <ShowDetails item={selectedItem} onCancel={handleCancelDetails} handleShowType={handleShowType}
                 // onSubmit={handleSubmit} 
                 buttonText={submitButtonText} />
             )};
