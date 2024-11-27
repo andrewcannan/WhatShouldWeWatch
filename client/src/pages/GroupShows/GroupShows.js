@@ -72,6 +72,10 @@ const GroupShows = () => {
         setSelectedItem(null);
     };
 
+    const handleShowType = (type) => {
+        setShowType(type);
+    };
+
 
     return (
         <div className='group-shows'>
@@ -93,7 +97,7 @@ const GroupShows = () => {
             )};
 
             {selectedItem && (
-                <ShowDetails item={selectedItem} onCancel={handleCancelDetails} 
+                <ShowDetails item={selectedItem} onCancel={handleCancelDetails} showTypeSelect={handleShowType}
                 // onSubmit={handleSubmit} 
                 buttonText={submitButtonText} />
             )};
