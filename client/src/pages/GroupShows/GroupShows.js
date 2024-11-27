@@ -12,6 +12,7 @@ const GroupShows = () => {
     const { groupId } = useParams(); //groupId to be passed to children
     const [ showsByGenre, setShowsByGenre ] = useState({});
     const [ selectedItem, setSelectedItem ] = useState(null);
+    const [ showType, setShowType ] = useState('movie');
     const submitButtonText = 'Remove'
 
     function groupByGenre(data) {
@@ -76,12 +77,12 @@ const GroupShows = () => {
         <div className='group-shows'>
             <LogoNav />
             {!selectedItem && (
-                Object.keys(showsByGenre).map(genre => (
+                Object.keys(showsByGenre).filter(genre => showsByGenre[genre].some(show => show.media_type === showType)).map(genre => (
                     <div key={genre} className='row genre-row mb-3 no-gutters'>
                         <p className='h3'>{genre}</p>
                         <div className='card-deck'>
-                            {showsByGenre[genre].map(show => (
-                                <div key={show.id} className='card' onClick={() => handleSelectedItem(show)}>
+                            {showsByGenre[genre].filter(show => show.media_type === showType).map((show, index) => (
+                                <div key={show.id || index} className='card' onClick={() => handleSelectedItem(show)}>
                                     <img className='card-img-top' src={`https://image.tmdb.org/t/p/w200${show.poster_path}`} alt={show.title || show.name}></img>
                                     <p className='h5'>{show.title || show.name}</p>
                                 </div>
@@ -92,7 +93,9 @@ const GroupShows = () => {
             )};
 
             {selectedItem && (
-                <ShowDetails item={selectedItem} onCancel={handleCancelDetails} onSubmit={handleSubmit} buttonText={submitButtonText} />
+                <ShowDetails item={selectedItem} onCancel={handleCancelDetails} 
+                // onSubmit={handleSubmit} 
+                buttonText={submitButtonText} />
             )};
             <BottomNav groupId={groupId}/>
         </div>
