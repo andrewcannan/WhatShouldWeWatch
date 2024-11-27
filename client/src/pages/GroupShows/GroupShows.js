@@ -101,7 +101,7 @@ const GroupShows = () => {
                 // onSubmit={handleSubmit} 
                 buttonText={submitButtonText} />
             )};
-            <BottomNav groupId={groupId} handleShowType={handleShowType}/>
+            <BottomNav groupId={groupId} handleShowType={handleShowType} showType={showType}/>
         </div>
     );
 };
