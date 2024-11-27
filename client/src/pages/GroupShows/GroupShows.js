@@ -97,11 +97,11 @@ const GroupShows = () => {
             )};
 
             {selectedItem && (
-                <ShowDetails item={selectedItem} onCancel={handleCancelDetails} handleShowType={handleShowType}
+                <ShowDetails item={selectedItem} onCancel={handleCancelDetails}
                 // onSubmit={handleSubmit} 
                 buttonText={submitButtonText} />
             )};
-            <BottomNav groupId={groupId}/>
+            <BottomNav groupId={groupId} handleShowType={handleShowType}/>
         </div>
     );
 };
