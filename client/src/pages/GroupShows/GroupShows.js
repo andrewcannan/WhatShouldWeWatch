@@ -86,8 +86,8 @@ const GroupShows = () => {
                 <>
                     <div className='row mb-3 no-gutters'>
                         <div className='d-flex justify-content-around p-3'>
-                            <button type="button" className="btn btn-outline-light" onClick={() => handleShowType('movie')}>Movies</button>
-                            <button type="button" className="btn btn-outline-light" onClick={() => handleShowType('tv')}>TV</button>
+                            <button type="button" className={`btn btn-outline-light ${showType === 'movie' ? 'active' : ''}`} onClick={() => handleShowType('movie')}>Movies</button>
+                            <button type="button" className={`btn btn-outline-light ${showType === 'tv' ? 'active' : ''}`}  onClick={() => handleShowType('tv')}>TV</button>
                         </div>
                     </div>
 
