@@ -87,15 +87,15 @@ const GroupShows = () => {
                     <div key={genre} className='row genre-row mb-3 no-gutters'>
                         <p className='h3'>{genre}</p>
                         <div className='card-deck' ref={(el) => {
-                                const ref = getRef(genreIndex);
-                                if (ref) {
-                                    ref.current = el; // Assign the element to the ref
-                                }
-                            }}
-                            onMouseDown={(e) => handleDragStart(genreIndex, e)}
-                            onMouseLeave={() => handleDragEnd(genreIndex)}
-                            onMouseUp={() => handleDragEnd(genreIndex)}
-                            onMouseMove={(e) => handleDrag(genreIndex, e)}>
+                                    const ref = getRef(genreIndex);
+                                    if (ref) {
+                                        ref.current = el;
+                                    }
+                                }}
+                                onMouseDown={(e) => handleDragStart(genreIndex, e)}
+                                onMouseLeave={() => handleDragEnd(genreIndex)}
+                                onMouseUp={() => handleDragEnd(genreIndex)}
+                                onMouseMove={(e) => handleDrag(genreIndex, e)}>
                             {showsByGenre[genre].filter(show => show.media_type === showType).map((show, index) => (
                                 <div key={show.id || index} className='card' onClick={() => handleSelectedItem(show)} draggable='false'>
                                     <img className='card-img-top' src={`https://image.tmdb.org/t/p/w200${show.poster_path}`} alt={show.title || show.name} draggable='false'></img>
