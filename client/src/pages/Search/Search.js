@@ -4,6 +4,7 @@ import {  showSuccessToast, showErrorToast } from '../../components/ToastHelper.
 import { getSessionCookie } from '../../components/CookieUtil.js'
 import SearchForm from '../../components/forms/SearchForm';
 import LogoNav from '../../components/LogoNav';
+import BottomNav from '../../components/BottomNav';
 import './Search.css'
 import ShowDetails from '../../components/ShowDetails';
 
@@ -88,6 +89,8 @@ const Search = () => {
             {selectedItem && (
             <ShowDetails item={selectedItem} onCancel={handleCancelDetails} onSubmit={handleSubmit} buttonText={submitButtonText} />
             )}
+
+            <BottomNav groupId={groupId} />
         </div>
     )
 }
