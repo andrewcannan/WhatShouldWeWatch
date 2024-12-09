@@ -14,15 +14,16 @@
 }
 
 .group-shows .card-deck {
+    width: max-content;
     display: flex;
     flex-wrap: nowrap;
-    overflow-x: auto;
+    overflow-x: scroll;
     gap: 1rem;
-    scrollbar-width: none;
+    user-select: none;
 }
 
 .group-shows .card-deck::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, and Edge: Hides scrollbar */
+    display: none;
 }
 
 .group-shows .card {
@@ -40,7 +41,15 @@
 }
 
 .group-shows .row {
-    max-width: 100%;
+    overflow-x: auto;
+    min-width: unset;
+    width: 100%;
+}
+
+.group-shows .genre-row{
+    overflow-x: auto;
+    min-width: unset;
+    width: 100%;
 }
 
 .group-shows .nav-item.active {
