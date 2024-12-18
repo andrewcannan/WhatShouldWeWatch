@@ -1,4 +1,5 @@
 import React from "react";
+import ConfirmModal from "./ConfimModal";
 
 const ShowDetails = ({ item, onCancel, onSubmit, buttonText}) => {
     return (
@@ -39,12 +40,13 @@ const ShowDetails = ({ item, onCancel, onSubmit, buttonText}) => {
                         <div className="col-12">
                             <div className="d-flex justify-content-between">
                                 <button type="button" className="btn btn-outline-light" onClick={onCancel}>Cancel</button>
-                                <button type="submit" className="btn btn-danger" onClick={onSubmit}>{buttonText}</button>
+                                <button type="button" className="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">{buttonText}</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <ConfirmModal modalBodyText={`Remove "${item.title|| item.name}" from your watchlist?`} onSubmit={onSubmit}/>
         </div>
     )
 };
