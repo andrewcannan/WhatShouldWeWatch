@@ -290,6 +290,47 @@ def get_shows():
     return jsonify(shows_data)
 
 
+@app.route('/remove_show', methods=['POST'])
+def remove_show():
+    """
+    Retrieves groupId and selectedItem from request.
+    Checks if show exists in the db and is associated with the group.
+    Removes the relationship between the show and the group.
+    Optionally deletes the show if it's no longer associated with any groups.
+    """
+    if 'user' not in session:
+        return jsonify({'error': 'Unauthorized.'}), 401
+
+    group_id = request.json.get('groupId')
+    show = request.json.get('selectedItem')
+
+    if not show:
+        return jsonify({'error': 'No Movie or TV show selected.'}), 400
+
+    group = Group.query.get(group_id)
+
+    if not group:
+        return jsonify({'error': 'Group not found.'}), 404
+
+    existing_show = Show.query.get(show.get('id')) 
+
+    if not existing_show:
+        return jsonify({'error': 'Show not found in database.'}), 404
+
+    if existing_show not in group.shows:
+        return jsonify({'error': 'Show not in group watchlist.'}), 400
+
+    group.shows.remove(existing_show)
+    db.session.commit()
+
+    if not existing_show.groups: 
+        db.session.delete(existing_show)
+        db.session.commit()
+
+    return jsonify({'message': 'Successfully removed from watchlist.'}), 200
+
+
+
 # Callback Functions
 
 def is_password_valid(string):
