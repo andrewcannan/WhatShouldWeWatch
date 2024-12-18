@@ -276,6 +276,7 @@ def get_shows():
     
     shows_data = [
         {
+            'id': show.id,
             'name': show.name,
             'description': show.description,
             'poster_path': show.poster_path,
