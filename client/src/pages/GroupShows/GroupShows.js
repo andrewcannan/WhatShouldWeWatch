@@ -35,31 +35,31 @@ const GroupShows = () => {
         return genreMap;
     };
 
-    useEffect(() => {
-        const getShows = async () => {
-            try {
-                const response = await fetch(`/getShows?groupId=${groupId}`, {
-                    method: 'GET'
-                });
-    
-                if (!response.ok) {
-                    const errorData = await response.json();
-                    showErrorToast(errorData.error)
-                    throw new Error(errorData)
-                }
-    
-                const data = await response.json();
-                const genreData = groupByGenre(data);
-                setShowsByGenre(genreData);                
-            }
-            catch (error) {
-                showErrorToast('An unexpected error occurred.');
-                console.error(error);
-            }
-        };
+    const getShows = async () => {
+        try {
+            const response = await fetch(`/getShows?groupId=${groupId}`, {
+                method: 'GET'
+            });
 
+            if (!response.ok) {
+                const errorData = await response.json();
+                showErrorToast(errorData.error)
+                throw new Error(errorData)
+            }
+
+            const data = await response.json();
+            const genreData = groupByGenre(data);
+            setShowsByGenre(genreData);                
+        }
+        catch (error) {
+            showErrorToast('An unexpected error occurred.');
+            console.error(error);
+        }
+    };
+
+    useEffect(() => {
         getShows();
-    }, [groupId]);
+    });
 
     useEffect(() => {
         if (!getSessionCookie()) {
@@ -97,12 +97,14 @@ const GroupShows = () => {
 
             if (!response.ok) {
                 const errorData = await response.json();
-                showErrorToast(errorData.error)
-                throw new Error(errorData)
+                showErrorToast(errorData.error);
+                throw new Error(errorData);
             }
 
             const data = await response.json();
-            showSuccessToast(data.message)
+            showSuccessToast(data.message);
+            setSelectedItem(null);
+            getShows();
         }
         catch(error) {
             showErrorToast('An unexpected error occurred.');
