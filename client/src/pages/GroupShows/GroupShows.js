@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getSessionCookie } from '../../components/CookieUtil';
 import { showErrorToast } from '../../components/ToastHelper';
+import { showSuccessToast } from '../../components/ToastHelper';
 import { useDragScroll } from '../../components/Drag-to-Scroll';
 import LogoNav from '../../components/LogoNav';
 import BottomNav from '../../components/BottomNav';
@@ -10,7 +11,7 @@ import './GroupShows.css'
 
 const GroupShows = () => {
     const navigate = useNavigate();
-    const { groupId } = useParams(); //groupId to be passed to children
+    const { groupId } = useParams();
     const [ showsByGenre, setShowsByGenre ] = useState({});
     const [ selectedItem, setSelectedItem ] = useState(null);
     const [ showType, setShowType ] = useState('movie');
@@ -79,6 +80,36 @@ const GroupShows = () => {
         setShowType(type);
     };
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await fetch('remove_show', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({
+                    groupId: groupId,
+                    selectedItem: selectedItem,
+                  }),
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                showErrorToast(errorData.error)
+                throw new Error(errorData)
+            }
+
+            const data = await response.json();
+            showSuccessToast(data.message)
+        }
+        catch(error) {
+            showErrorToast('An unexpected error occurred.');
+            console.error(error);
+        }
+    };
+
     return (
         <div className='group-shows'>
             <LogoNav />
@@ -117,9 +148,7 @@ const GroupShows = () => {
             )};
 
             {selectedItem && (
-                <ShowDetails item={selectedItem} onCancel={handleCancelDetails}
-                // onSubmit={handleSubmit} 
-                buttonText={submitButtonText} />
+                <ShowDetails item={selectedItem} onCancel={handleCancelDetails} onSubmit={handleSubmit} buttonText={submitButtonText} />
             )};
             <BottomNav groupId={groupId} />
         </div>
