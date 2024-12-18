@@ -84,7 +84,7 @@ const GroupShows = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch('remove_show', {
+            const response = await fetch('/remove_show', {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",
