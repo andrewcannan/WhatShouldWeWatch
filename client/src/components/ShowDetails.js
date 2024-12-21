@@ -36,7 +36,7 @@ const ShowDetails = ({ item, onCancel, onSubmit, buttonText}) => {
                             <p>{item.overview || item.description}</p>
                         </div>
                     </div>
-                    <div className="row mb-3">
+                    <div className="row mb-3 pb-3">
                         <div className="col-12">
                             <div className="d-flex justify-content-between">
                                 <button type="button" className="btn btn-outline-light" onClick={onCancel}>Cancel</button>
