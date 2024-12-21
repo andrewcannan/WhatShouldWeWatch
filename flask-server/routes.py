@@ -324,7 +324,7 @@ def remove_show():
     group.shows.remove(existing_show)
     db.session.commit()
 
-    if not existing_show.groups: 
+    if existing_show.groups.count() == 0: 
         db.session.delete(existing_show)
         db.session.commit()
 
