@@ -38,7 +38,7 @@ class Group(db.Model):
     group_code = db.Column(db.String, nullable=False)
     avatar = db.Column(db.Enum('avatar1', 'avatar2', 'avatar3', 'avatar4', 'avatar5',
                                'avatar6', 'avatar7', 'avatar8', 'avatar9', name='avatar_enum'), nullable=False)
-    shows = db.relationship('Show', secondary=groups_shows, backref=db.backref('groups', lazy='dynamic'), cascade="all, delete, delete-orphan")
+    shows = db.relationship('Show', secondary=groups_shows, backref=db.backref('groups', lazy='dynamic'), cascade="all, delete")
 
     def __repr__(self):
         # represents itself in the form of a string
