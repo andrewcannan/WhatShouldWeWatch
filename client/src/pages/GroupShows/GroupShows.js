@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getSessionCookie } from '../../components/CookieUtil';
 import { showErrorToast } from '../../components/ToastHelper';
@@ -35,7 +35,7 @@ const GroupShows = () => {
         return genreMap;
     };
 
-    const getShows = async () => {
+    const getShows = useCallback(async () => {
         try {
             const response = await fetch(`/getShows?groupId=${groupId}`, {
                 method: 'GET'
@@ -55,11 +55,11 @@ const GroupShows = () => {
             showErrorToast('An unexpected error occurred.');
             console.error(error);
         }
-    };
+    }, [groupId]);
 
     useEffect(() => {
         getShows();
-    });
+    }, [getShows]);
 
     useEffect(() => {
         if (!getSessionCookie()) {
