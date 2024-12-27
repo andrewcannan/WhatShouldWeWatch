@@ -116,18 +116,24 @@ def create_group():
 @app.route('/edit_group', methods=['POST'])
 def edit_group():
     """
-    Retrieves group from database and updates group name and avatar. 
+    Retrieves group from database and updates group name and avatar.
+    Returns unauthorized if user is not logged in or a member of that group.
     """
     if 'user' not in session:
         return jsonify({'error': 'Unauthorized'}), 401
     
-    group_id = request.form['groupId']
+    group_id = request.form.get['groupId']
     group = Group.query.filter_by(id=group_id).first()
     
-    if group:
-        group.group_name = request.form.get('groupName').lower(),
-        group.avatar = request.form.get('avatar').lower()
-        db.session.commit()
+    if not group:
+        return jsonify({'error': 'Group not found'}), 404
+    
+    if session['user'] not in group.users:
+        return jsonify({'error': 'Unauthorized'}), 401
+    
+    group.group_name = request.form.get('groupName').lower(),
+    group.avatar = request.form.get('avatar').lower()
+    db.session.commit()
 
     return jsonify({'message': 'Group updated succesfully.'}), 201
 
