@@ -61,6 +61,7 @@ const EditGroupForm = ({groupId}) => {
         for (const key in formData) {
             form.append(key, formData[key]);
         }
+        form.append('groupId', groupId);
 
         try {
             const response = await fetch('/edit_group', {
