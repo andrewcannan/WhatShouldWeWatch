@@ -254,6 +254,9 @@ def add_show():
     if not group:
         return jsonify({'error': 'Group not found.'}), 404
     
+    if session['user'] not in group.users:
+        return jsonify({'error': 'Unauthorized'}), 401
+    
     existing_show = Show.query.filter_by(name=show.get('title') or show.get('name')).first()
     
     if existing_show:
@@ -297,6 +300,9 @@ def get_shows():
     if not group:
         return jsonify({'error': 'Group not found.'}), 404
     
+    if session['user'] not in group.users:
+        return jsonify({'error': 'Unauthorized'}), 401
+    
     shows = group.shows
     
     shows_data = [
@@ -337,6 +343,9 @@ def remove_show():
 
     if not group:
         return jsonify({'error': 'Group not found.'}), 404
+    
+    if session['user'] not in group.users:
+        return jsonify({'error': 'Unauthorized'}), 401
 
     existing_show = Show.query.get(show.get('id')) 
 
