@@ -40,7 +40,7 @@ const ShowDetails = ({ item, onCancel, onSubmit, buttonText}) => {
                         <div className="col-12">
                             <div className="d-flex justify-content-between">
                                 <button type="button" className="btn btn-outline-light" onClick={onCancel}>Cancel</button>
-                                <button type="button" className="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">{buttonText}</button>
+                                <button type="button" className="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmModal">{buttonText}</button>
                             </div>
                         </div>
                     </div>
