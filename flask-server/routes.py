@@ -113,6 +113,25 @@ def create_group():
     return jsonify({'message': 'Group created succesfully.'}), 201
 
 
+@app.route('/edit_group', methods=['POST'])
+def edit_group():
+    """
+    Retrieves group from database and updates group name and avatar. 
+    """
+    if 'user' not in session:
+        return jsonify({'error': 'Unauthorized'}), 401
+    
+    group_id = request.form['groupId']
+    group = Group.query.filter_by(id=group_id).first()
+    
+    if group:
+        group.group_name = request.form.get('groupName').lower(),
+        group.avatar = request.form.get('avatar').lower()
+        db.session.commit()
+
+    return jsonify({'message': 'Group updated succesfully.'}), 201
+
+
 @app.route('/join_group', methods=['GET', 'POST'])
 def join_group():
     """
