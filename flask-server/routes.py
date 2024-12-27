@@ -45,7 +45,7 @@ def login():
     
     if existing_user and check_password_hash(
         existing_user.password, request.form.get('password')):
-        session['user'] = request.form.get('username').lower()
+        session['user'] = existing_user.id
         update_genres()
         return jsonify({'message': 'Login Successful.'}), 200
         
@@ -71,7 +71,7 @@ def get_groups():
     if 'user' not in session:
         return jsonify({'error': 'Unauthorized'}), 401
     
-    user = User.query.filter_by(username=session['user']).first()
+    user = User.query.filter_by(id=session['user']).first()
     
     groups = user.groups
     
@@ -96,7 +96,7 @@ def create_group():
     if 'user' not in session:
         return jsonify({'error': 'Unauthorized'}), 401
     
-    user = User.query.filter_by(username=session['user']).first()
+    user = User.query.filter_by(id=session['user']).first()
     new_group_code = generate_group_code()
     
     new_group = Group(
@@ -167,7 +167,7 @@ def join_group():
     
     elif request.method == 'POST':
         group_code = request.form.get('groupCode')
-        user = User.query.filter_by(username=session['user']).first()
+        user = User.query.filter_by(id=session['user']).first()
         
         if not group_code:
             return jsonify({'error': 'Group code required.'}), 400
