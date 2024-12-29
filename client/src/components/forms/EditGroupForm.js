@@ -1,44 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { showSuccessToast, showErrorToast } from '../ToastHelper.js'
 import ConfirmModal from "../ConfimModal.js";
 import avatars from '../Avatars.js'
 
-const EditGroupForm = ({groupId}) => {
+const EditGroupForm = ({groupId, groupData, handleEditCancel}) => {
     const navigate = useNavigate();
     const [ formData, setFormData ] = useState({
-        avatar: '',
-        groupName: ''
+        avatar: groupData.avatar,
+        groupName: groupData.name
     });
-
-    useEffect(() => {
-        const fetchGroups = async () => {
-            try {
-                const response = await fetch('/getGroups', {
-                    method: 'GET',
-                    credentials: 'include'
-                });
-    
-                if (!response.ok) {
-                    const errorData = await response.json();
-                    showErrorToast(errorData.error)
-                    throw new Error(errorData)
-                }
-    
-                const data = await response.json();
-                const currentGroup = data.groups.find(group => group.id === groupId);
-                setFormData({
-                    avatar: currentGroup.avatar,
-                    groupName: currentGroup.name
-                })
-            }
-            catch (error) {
-                showErrorToast('An unexpected error occurred.');
-                console.error(error);
-            }
-        }
-        fetchGroups();
-    }, [groupId]);
 
     const handleChange = (e) => {
         const {id, value} = e.target;
@@ -99,7 +70,7 @@ const EditGroupForm = ({groupId}) => {
                     <label htmlFor="groupName">Group Name</label>
                 </div>
                 <div className="d-flex justify-content-between">
-                    <button type="button" className="btn btn-outline-light" onClick={() => navigate('/settings')}>Cancel</button>
+                    <button type="button" className="btn btn-outline-light" onClick={handleEditCancel}>Cancel</button>
                     <button type="button" className="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmModal">Edit</button>
                 </div>
             </form>
