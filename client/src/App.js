@@ -14,6 +14,7 @@ import JoinGroup from "./pages/JoinGroup/JoinGroup.js";
 import Welcome from "./pages/Welcome/Welcome.js";
 import Search from "./pages/Search/Search.js";
 import GroupShows from "./pages/GroupShows/GroupShows.js";
+import Settings from "./pages/Settings/Settings.js";
 
 function App() {
     return (
@@ -29,6 +30,7 @@ function App() {
                     <Route path="/join-group" element={<JoinGroup />} />
                     <Route path="/groups/:groupId" element={<GroupShows />} />
                     <Route path="/search" element={<Search />} />
+                    <Route path="/settings" element={<Settings />} />
                 </Routes>
             </Router>
         </div>
