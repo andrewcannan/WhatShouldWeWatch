@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const BottomNav = ({ groupId }) => {
+const BottomNav = ({ groupId, allShows }) => {
     const navigate = useNavigate();
 
     const handleSearchClick = () => {
@@ -13,7 +13,7 @@ const BottomNav = ({ groupId }) => {
     }
 
     const handleSettingsClick = () => {
-        navigate('/settings', { state: { groupId } });
+        navigate('/settings', { state: { groupId, allShows } });
     };
 
 
