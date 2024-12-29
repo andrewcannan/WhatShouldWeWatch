@@ -48,6 +48,10 @@ const Settings = () => {
         fetchGroups();
     }, [groupId]);
 
+    const handleEditCancel = () => {
+        setEditGroupSelected(false);
+    }
+
     return (
         groupData && (
         <div className="settings">
@@ -98,7 +102,7 @@ const Settings = () => {
             )}
 
             {editGroupSelected && (
-                <EditGroupForm />
+                <EditGroupForm groupData={groupData} handleEditCancel={handleEditCancel} />
             )}
 
             <BottomNav groupId={groupId} />
