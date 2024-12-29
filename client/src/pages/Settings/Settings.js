@@ -5,16 +5,19 @@ import BottomNav from '../../components/BottomNav';
 import { getSessionCookie } from '../../components/CookieUtil.js';
 import {  showSuccessToast, showErrorToast } from '../../components/ToastHelper.js';
 import EditGroupForm from "../../components/forms/EditGroupForm.js";
+import ConfirmModal from "../../components/ConfimModal.js";
 import './Settings.css';
 
 
 const Settings = () => {
     const [ editGroupSelected, setEditGroupSelected ] = useState(false);
     const [ manageShowsSelected, setManageShowsSelected ] = useState(false);
+    const [ selectedItem, setSelectedItem ] = useState(null);
     const navigate = useNavigate();
     const location = useLocation();
     const groupId = Number(location.state?.groupId);
-    const allShows = location.state?.allShows;
+    const initialAllShows = location.state?.allShows;
+    const [ allShows, setAllShows ] = useState(initialAllShows)
     const [ groupData, setGroupData ] = useState(null);
 
     useEffect(() => {
@@ -53,6 +56,39 @@ const Settings = () => {
     const handleEditCancel = () => {
         setEditGroupSelected(false);
     }
+
+    const handleRemoveShow = async (e) => {
+            e.preventDefault();
+    
+            try {
+                const response = await fetch('/remove_show', {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify({
+                        groupId: groupId,
+                        selectedItem: selectedItem,
+                      }),
+                });
+    
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    showErrorToast(errorData.error);
+                    throw new Error(errorData);
+                }
+    
+                const data = await response.json();
+                showSuccessToast(data.message);
+                const updatedShows = allShows.filter((show) => show.id !== selectedItem.id);
+                setSelectedItem(null);
+                setAllShows(updatedShows);
+            }
+            catch(error) {
+                showErrorToast('An unexpected error occurred.');
+                console.error(error);
+            }
+        };
 
     return (
         groupData && (
@@ -121,10 +157,10 @@ const Settings = () => {
                                 <p className='text-center'>{item.title || item.name}</p>
                             </div>
                                 <div className="row">
-                            <button type="button" className="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmModal">Remove</button>
+                            <button type="button" className="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmModal" onClick={() => setSelectedItem(item)}>Remove</button>
                             </div>
                         </div>
-                        
+                        <ConfirmModal modalBodyText={`Remove "${selectedItem? selectedItem.title|| selectedItem.name: ''}" from your watchlist?`} onSubmit={handleRemoveShow}/>
                     </div>
                 ))
             )}
