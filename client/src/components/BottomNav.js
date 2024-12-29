@@ -18,7 +18,7 @@ const BottomNav = ({ groupId }) => {
 
 
     return (
-       <div className='row fixed-bottom border-top border-secondary text-white text-center' style={{backgroundColor: '#000', fontFamily: 'Roboto'}}>
+       <div className='row fixed-bottom border-top border-secondary text-white text-center g-0' style={{backgroundColor: '#000', fontFamily: 'Roboto'}}>
             <div className='col-4 border-end border-secondary pt-3 nav-item' onClick={handleSearchClick}>
                 <i className="fa-solid fa-magnifying-glass"></i>
                 <p>Search</p>
