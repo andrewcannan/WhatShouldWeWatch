@@ -14,6 +14,7 @@ const Settings = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const groupId = Number(location.state?.groupId);
+    const allShows = location.state?.allShows;
     const [ groupData, setGroupData ] = useState(null);
 
     useEffect(() => {
@@ -109,7 +110,26 @@ const Settings = () => {
                 </>
             )}
 
-            <BottomNav groupId={groupId} />
+            {manageShowsSelected && (
+                allShows.map((item) => (
+                    <div className='row all-shows mb-3' key={item.id}>
+                        <div className='col-6 col-md-4'>
+                            <img src={`https://image.tmdb.org/t/p/w200${item.poster_path}`} alt={item.title || item.name}></img>
+                        </div>
+                        <div className='col-6 col-md-8 d-flex flex-column justify-content-center align-items-center'>
+                            <div className="row">
+                                <p className='text-center'>{item.title || item.name}</p>
+                            </div>
+                                <div className="row">
+                            <button type="button" className="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmModal">Remove</button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                ))
+            )}
+
+            <BottomNav groupId={groupId} allShows={allShows}/>
         </div>
         )
     );

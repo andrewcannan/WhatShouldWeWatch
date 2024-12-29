@@ -41,3 +41,21 @@
 .settings .edit-group-form .modal-content {
     background-color: #000;
 }
+
+.settings .all-shows {
+    padding-bottom: 100px;
+}
+
+.settings .all-shows img {
+    height: 150px;
+}
+
+.settings .all-shows .btn {
+    width: 150px;
+}
+
+@media (min-width: 768px) {
+    .settings .all-shows img {
+        height: 300px;
+    }
+}
