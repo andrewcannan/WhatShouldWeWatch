@@ -90,6 +90,14 @@ const Settings = () => {
             }
         };
 
+        const handleLeaveGroup = () => {
+
+        }
+
+        const handleDeleteGroup = () => {
+            
+        }
+
     return (
         groupData && (
         <div className="settings">
@@ -131,9 +139,19 @@ const Settings = () => {
 
                     <div className="row mb-3 ps-3">
                         <div className="col-12 col-md-6 offset-md-3">
-                            <h3 className="text-danger-emphasis">
+                            <h3 className="text-danger-emphasis" data-bs-toggle="modal" data-bs-target="#confirmModal">
+                                Leave Group
+                            </h3>
+                            <ConfirmModal modalBodyText={'Leave this group permanently?'} onSubmit={handleLeaveGroup}/>
+                        </div>
+                    </div>
+
+                    <div className="row mb-3 ps-3">
+                        <div className="col-12 col-md-6 offset-md-3">
+                            <h3 className="text-danger-emphasis" data-bs-toggle="modal" data-bs-target="#confirmModal">
                                 Delete Group
                             </h3>
+                            <ConfirmModal modalBodyText={'Delete this group permanently?'} onSubmit={handleDeleteGroup}/>
                         </div>
                     </div>
                 </>
