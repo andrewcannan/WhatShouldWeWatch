@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from 'react-router-dom';
 import LogoNav from '../../components/LogoNav';
 import BottomNav from '../../components/BottomNav';
-import { getSessionCookie } from '../../components/CookieUtil.js'
-import {  showSuccessToast, showErrorToast } from '../../components/ToastHelper.js'
+import { getSessionCookie } from '../../components/CookieUtil.js';
+import {  showSuccessToast, showErrorToast } from '../../components/ToastHelper.js';
 import EditGroupForm from "../../components/forms/EditGroupForm.js";
+import './Settings.css';
 
 
 const Settings = () => {
@@ -59,41 +60,41 @@ const Settings = () => {
 
             {!editGroupSelected && !manageShowsSelected && (
                 <>
-                    <div className="row mb-3">
-                        <div className="col-12 col-md-6 col-md-offset-3">
+                    <div className="row mb-5">
+                        <div className="col-12 col-md-6 offset-md-3">
                             <h1 className='text-center'>
                                 Settings
                             </h1>
                         </div>
                     </div>
 
-                    <div className="row mb-3">
-                        <div className="col-12 col-md-6 col-md-offset-3">
+                    <div className="row mb-3 ps-3">
+                        <div className="col-12 col-md-6 offset-md-3">
                             <h3>
                                Invite Code : {groupData.code}
                             </h3>
                         </div>
                     </div>
 
-                    <div className="row mb-3">
-                        <div className="col-12 col-md-6 col-md-offset-3">
+                    <div className="row mb-3 ps-3">
+                        <div className="col-12 col-md-6 offset-md-3">
                             <h3 onClick={() => setEditGroupSelected(true)}>
                                 Edit Group
                             </h3>
                         </div>
                     </div>
 
-                    <div className="row mb-3">
-                        <div className="col-12 col-md-6 col-md-offset-3">
+                    <div className="row mb-3 ps-3">
+                        <div className="col-12 col-md-6 offset-md-3">
                             <h3 onClick={() => setManageShowsSelected(true)}>
                                 Manage Shows/Movies
                             </h3>
                         </div>
                     </div>
 
-                    <div className="row mb-3">
-                        <div className="col-12 col-md-6 col-md-offset-3">
-                            <h3>
+                    <div className="row mb-3 ps-3">
+                        <div className="col-12 col-md-6 offset-md-3">
+                            <h3 className="text-danger-emphasis">
                                 Delete Group
                             </h3>
                         </div>
