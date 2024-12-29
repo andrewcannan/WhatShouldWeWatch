@@ -79,7 +79,8 @@ def get_groups():
         {
             'id': group.id,
             'name': group.group_name,
-            'avatar': group.avatar
+            'avatar': group.avatar,
+            'code': group.group_code
         }
         for group in groups
     ]
