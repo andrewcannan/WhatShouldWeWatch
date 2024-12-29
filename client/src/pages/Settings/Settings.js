@@ -103,7 +103,10 @@ const Settings = () => {
             )}
 
             {editGroupSelected && (
+                <>
+                <div className="row text-center form-title"><h1>Edit Group</h1></div>
                 <EditGroupForm groupData={groupData} handleEditCancel={handleEditCancel} />
+                </>
             )}
 
             <BottomNav groupId={groupId} />

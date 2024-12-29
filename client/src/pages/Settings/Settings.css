@@ -11,6 +11,10 @@
     padding-top: 100px;
 }
 
+.settings.form-title {
+    margin-top: 5vh;
+}
+
 .settings .edit-group-form {
     display: flex;
     justify-content: center;
