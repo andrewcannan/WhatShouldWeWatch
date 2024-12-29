@@ -10,3 +10,19 @@
     color: #fff;
     padding-top: 100px;
 }
+
+.settings .edit-group-form {
+    display: flex;
+    justify-content: center;
+}
+
+.settings .row {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+@media (max-width: 768px) {
+    .settings .edit-group-form .avatar-image {
+        height: 200px;
+    }
+}
