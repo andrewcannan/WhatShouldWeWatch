@@ -12,6 +12,7 @@ import './GroupShows.css'
 const GroupShows = () => {
     const navigate = useNavigate();
     const { groupId } = useParams();
+    const { allShows, setAllShows } = useState({});
     const [ showsByGenre, setShowsByGenre ] = useState({});
     const [ selectedItem, setSelectedItem ] = useState(null);
     const [ showType, setShowType ] = useState('movie');
@@ -48,6 +49,7 @@ const GroupShows = () => {
             }
 
             const data = await response.json();
+            setAllShows(data);
             const genreData = groupByGenre(data);
             setShowsByGenre(genreData);                
         }
@@ -55,7 +57,7 @@ const GroupShows = () => {
             showErrorToast('An unexpected error occurred.');
             console.error(error);
         }
-    }, [groupId]);
+    }, [groupId, setAllShows]);
 
     useEffect(() => {
         getShows();
@@ -152,7 +154,7 @@ const GroupShows = () => {
             {selectedItem && (
                 <ShowDetails item={selectedItem} onCancel={handleCancelDetails} onSubmit={handleSubmit} buttonText={submitButtonText} />
             )}
-            <BottomNav groupId={groupId} />
+            <BottomNav groupId={groupId} allShows={allShows} />
         </div>
     );
 };
