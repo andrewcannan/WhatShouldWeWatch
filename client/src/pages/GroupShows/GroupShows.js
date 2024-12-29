@@ -12,7 +12,7 @@ import './GroupShows.css'
 const GroupShows = () => {
     const navigate = useNavigate();
     const { groupId } = useParams();
-    const { allShows, setAllShows } = useState({});
+    const [ allShows, setAllShows ] = useState({});
     const [ showsByGenre, setShowsByGenre ] = useState({});
     const [ selectedItem, setSelectedItem ] = useState(null);
     const [ showType, setShowType ] = useState('movie');
