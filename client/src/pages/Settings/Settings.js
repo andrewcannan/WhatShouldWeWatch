@@ -57,6 +57,10 @@ const Settings = () => {
         setEditGroupSelected(false);
     }
 
+    const handleSettingsClick = () => {
+        setManageShowsSelected(false);
+    }
+
     const handleRemoveShow = async (e) => {
             e.preventDefault();
     
@@ -95,7 +99,7 @@ const Settings = () => {
         }
 
         const handleDeleteGroup = () => {
-            
+
         }
 
     return (
@@ -183,7 +187,7 @@ const Settings = () => {
                 ))
             )}
 
-            <BottomNav groupId={groupId} allShows={allShows}/>
+            <BottomNav groupId={groupId} allShows={allShows} onSettingsClick={handleSettingsClick}/>
         </div>
         )
     );
