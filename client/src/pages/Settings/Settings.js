@@ -7,14 +7,12 @@ import {  showSuccessToast, showErrorToast } from '../../components/ToastHelper.
 import EditGroupForm from "../../components/forms/EditGroupForm.js";
 
 
-
-
 const Settings = () => {
     const [ editGroupSelected, setEditGroupSelected ] = useState(false);
     const [ manageShowsSelected, setManageShowsSelected ] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
-    const groupId = location.state?.groupId;
+    const groupId = Number(location.state?.groupId);
     const [ groupData, setGroupData ] = useState(null);
 
     useEffect(() => {
@@ -51,6 +49,7 @@ const Settings = () => {
     }, [groupId]);
 
     return (
+        groupData && (
         <div className="settings">
             <LogoNav />
 
@@ -67,14 +66,14 @@ const Settings = () => {
                     <div className="row mb-3">
                         <div className="col-12 col-md-6 col-md-offset-3">
                             <h3>
-                               Invite Code : {groupData.group_code}
+                               Invite Code : {groupData.code}
                             </h3>
                         </div>
                     </div>
 
                     <div className="row mb-3">
                         <div className="col-12 col-md-6 col-md-offset-3">
-                            <h3 onClick={setEditGroupSelected(true)}>
+                            <h3 onClick={() => setEditGroupSelected(true)}>
                                 Edit Group
                             </h3>
                         </div>
@@ -82,7 +81,7 @@ const Settings = () => {
 
                     <div className="row mb-3">
                         <div className="col-12 col-md-6 col-md-offset-3">
-                            <h3 onClick={setManageShowsSelected(true)}>
+                            <h3 onClick={() => setManageShowsSelected(true)}>
                                 Manage Shows/Movies
                             </h3>
                         </div>
@@ -102,8 +101,9 @@ const Settings = () => {
                 <EditGroupForm />
             )}
 
-            <BottomNav />
+            <BottomNav groupId={groupId} />
         </div>
+        )
     );
 };
 
