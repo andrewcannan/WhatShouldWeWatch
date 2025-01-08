@@ -302,7 +302,7 @@ def get_shows():
         return jsonify({'error': 'Group not found.'}), 404
     
     if session['user'] not in [user.id for user in group.users]:
-        return jsonify({'error': 'Unauthorized'}), 401
+        return jsonify({'error': 'Unauthorized. User not in group.'}), 401
     
     shows = group.shows
     
@@ -365,6 +365,31 @@ def remove_show():
 
     return jsonify({'message': 'Successfully removed from watchlist.'}), 200
 
+
+@app.route('/leave_group', methods=['POST'])
+def leave_group():
+    """
+    Retrieves groupId from request, checks if user is associated with that group.
+    Removes the user and commits to db. 
+    """
+    if 'user' not in session:
+        return jsonify({'error': 'Unauthorized.'}), 401
+    
+    group_id = request.json.get('groupId')
+    group = Group.query.filter_by(id=group_id).first()
+    
+    if not group:
+        return jsonify({'error': 'Group not found.'}), 404
+    
+    user = User.query.filter_by(id=session['user']).first()
+    
+    if user not in group.users:
+        return jsonify({'error': 'User not in group.'}), 403
+    
+    group.users.remove(user)
+    db.session.commit()
+    
+    return jsonify({'message': 'Successfully left the group.'})
 
 
 # Callback Functions
