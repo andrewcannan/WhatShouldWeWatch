@@ -61,6 +61,10 @@ const Settings = () => {
         setManageShowsSelected(false);
     }
 
+    const handleManageCancel = () => {
+        setManageShowsSelected(false);
+    }
+
     const handleRemoveShow = async (e) => {
             e.preventDefault();
     
@@ -217,22 +221,29 @@ const Settings = () => {
             )}
 
             {manageShowsSelected && (
-                allShows.map((item) => (
-                    <div className='row all-shows mb-3' key={item.id}>
-                        <div className='col-6 col-md-4'>
-                            <img src={`https://image.tmdb.org/t/p/w200${item.poster_path}`} alt={item.title || item.name}></img>
+                <>
+                    <div className="row mb-3">
+                        <div className="col">
+                            <button type="button" className="btn btn-outline-dark text-white" onClick={() => {handleManageCancel()}}><i className="fa-solid fa-chevron-left"></i> Back</button>
                         </div>
-                        <div className='col-6 col-md-8 d-flex flex-column justify-content-center align-items-center'>
-                            <div className="row">
-                                <p className='text-center'>{item.title || item.name}</p>
-                            </div>
-                                <div className="row">
-                            <button type="button" className="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmModal" onClick={() => setSelectedItem(item)}>Remove</button>
-                            </div>
-                        </div>
-                        <ConfirmModal modalBodyText={`Remove "${selectedItem? selectedItem.title|| selectedItem.name: ''}" from your watchlist?`} onSubmit={handleRemoveShow}/>
                     </div>
-                ))
+                    {allShows.map((item) => (
+                        <div className='row all-shows mb-3' key={item.id}>
+                            <div className='col-6 col-md-4'>
+                                <img src={`https://image.tmdb.org/t/p/w200${item.poster_path}`} alt={item.title || item.name}></img>
+                            </div>
+                            <div className='col-6 col-md-8 d-flex flex-column justify-content-center align-items-center'>
+                                <div className="row">
+                                    <p className='text-center'>{item.title || item.name}</p>
+                                </div>
+                                    <div className="row">
+                                <button type="button" className="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmModal" onClick={() => setSelectedItem(item)}>Remove</button>
+                                </div>
+                            </div>
+                            <ConfirmModal modalBodyText={`Remove "${selectedItem? selectedItem.title|| selectedItem.name: ''}" from your watchlist?`} onSubmit={handleRemoveShow}/>
+                        </div>
+                    ))}
+                </>
             )}
 
             <BottomNav groupId={groupId} allShows={allShows} onSettingsClick={handleSettingsClick}/>
