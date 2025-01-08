@@ -389,6 +389,10 @@ def leave_group():
     group.users.remove(user)
     db.session.commit()
     
+    if group.users.count() == 0:
+        db.session.delete(group)
+        db.session.commit()
+    
     return jsonify({'message': 'Successfully left the group.'})
 
 
