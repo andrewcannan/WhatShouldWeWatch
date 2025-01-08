@@ -94,13 +94,61 @@ const Settings = () => {
             }
         };
 
-        const handleLeaveGroup = () => {
+        const handleLeaveGroup = async () => {
+            try {
+                const response = await fetch('/leave_group', {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify({
+                        groupId: groupId
+                      }),
+                });
+    
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    showErrorToast(errorData.error);
+                    throw new Error(errorData);
+                }
+    
+                const data = await response.json();
+                showSuccessToast(data.message);
+                navigate('/groups')
+            }
+            catch(error) {
+                showErrorToast('An unexpected error occurred.');
+                console.error(error);
+            }
+        };
 
-        }
-
-        const handleDeleteGroup = () => {
-
-        }
+        const handleDeleteGroup = async () => {
+            try {
+                const response = await fetch('/delete_group', {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify({
+                        groupId: groupId
+                      }),
+                });
+    
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    showErrorToast(errorData.error);
+                    throw new Error(errorData);
+                }
+    
+                const data = await response.json();
+                showSuccessToast(data.message);
+                navigate('/groups')
+            }
+            catch(error) {
+                showErrorToast('An unexpected error occurred.');
+                console.error(error);
+            }
+        };
 
     return (
         groupData && (
@@ -155,7 +203,7 @@ const Settings = () => {
                             <h3 className="text-danger-emphasis" data-bs-toggle="modal" data-bs-target="#confirmModal">
                                 Delete Group
                             </h3>
-                            <ConfirmModal modalBodyText={'Delete this group permanently?'} onSubmit={handleDeleteGroup}/>
+                            <ConfirmModal modalBodyText={'Delete this group permanently? Only group creator can delete group.'} onSubmit={handleDeleteGroup}/>
                         </div>
                     </div>
                 </>
