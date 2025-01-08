@@ -396,6 +396,35 @@ def leave_group():
     return jsonify({'message': 'Successfully left the group.'})
 
 
+@app.route('/delete_group', methods=['POST'])
+def delete_group():
+    """
+    Retrieves groupId from the request, and if exists, deletes group from db.
+    Returns if user not in group, or is not the group creator.
+    """
+    if 'user' not in session:
+        return jsonify({'error': 'Unauthorized. Please log in.'}), 401
+    
+    group_id = request.json.get('groupId')
+    group = Group.query.filter_by(id=group_id).first()
+    
+    if not group:
+        return jsonify({'error': 'Group not found.'}), 404
+    
+    user = User.query.filter_by(id=session['user']).first()
+    
+    if user not in group.users:
+        return jsonify({'error': 'User not in group.'}), 403
+    
+    if user.id not in group.created_by:
+        return jsonify({'error': 'Unauthorized. Can not delete group.'}), 401
+    
+    db.session.delete(group)
+    db.session.commit()
+    
+    return jsonify({'message': 'Group deleted successfully.'})
+
+
 # Callback Functions
 
 def is_password_valid(string):
