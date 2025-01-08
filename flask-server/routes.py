@@ -419,7 +419,12 @@ def delete_group():
     if user.id not in group.created_by:
         return jsonify({'error': 'Unauthorized. Can not delete group.'}), 401
     
+    orphaned_shows = [show for show in group.shows if show.groups.count() == 1]
+    
     db.session.delete(group)
+    
+    for show in orphaned_shows:
+        db.session.delete(show)
     db.session.commit()
     
     return jsonify({'message': 'Group deleted successfully.'})
