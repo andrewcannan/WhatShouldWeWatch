@@ -69,7 +69,7 @@ def get_groups():
     Returns unauthorized if user not logged in.
     """
     if 'user' not in session:
-        return jsonify({'error': 'Unauthorized'}), 401
+        return jsonify({'error': 'Unauthorized. Please log in.'}), 401
     
     user = User.query.filter_by(id=session['user']).first()
     
@@ -95,7 +95,7 @@ def create_group():
     Returns unauthorized if user not logged in. 
     """
     if 'user' not in session:
-        return jsonify({'error': 'Unauthorized'}), 401
+        return jsonify({'error': 'Unauthorized. Please log in.'}), 401
     
     user = User.query.filter_by(id=session['user']).first()
     new_group_code = generate_group_code()
@@ -121,7 +121,7 @@ def edit_group():
     Returns unauthorized if user is not logged in or a member of that group.
     """
     if 'user' not in session:
-        return jsonify({'error': 'Unauthorized'}), 401
+        return jsonify({'error': 'Unauthorized. Please log in.'}), 401
     
     group_id = request.form.get['groupId']
     group = Group.query.filter_by(id=group_id).first()
@@ -147,7 +147,7 @@ def join_group():
     Returns unauthorized if user not logged in.
     """
     if 'user' not in session:
-        return jsonify({'error': 'Unauthorized'}), 401
+        return jsonify({'error': 'Unauthorized. Please log in.'}), 401
     
     if request.method == 'GET':
         group_code = request.args.get('groupCode')
@@ -242,7 +242,7 @@ def add_show():
     Commits instance to db and creates relationship to the group.
     """
     if 'user' not in session:
-        return jsonify({'error': 'Unauthorized.'}), 401
+        return jsonify({'error': 'Unauthorized. Please log in.'}), 401
     
     group_id = request.json.get('groupId')
     show = request.json.get('selectedItem')
@@ -291,7 +291,7 @@ def get_shows():
     Returns JSON data of all shows associated with group.
     """
     if 'user' not in session:
-        return jsonify({'error': 'Unauthorized'}), 401
+        return jsonify({'error': 'Unauthorized. Please log in.'}), 401
     
     group_id = request.args.get('groupId')
     if not group_id:
@@ -332,7 +332,7 @@ def remove_show():
     Optionally deletes the show if it's no longer associated with any groups.
     """
     if 'user' not in session:
-        return jsonify({'error': 'Unauthorized.'}), 401
+        return jsonify({'error': 'Unauthorized. Please log in.'}), 401
 
     group_id = request.json.get('groupId')
     show = request.json.get('selectedItem')
@@ -373,7 +373,7 @@ def leave_group():
     Removes the user and commits to db. 
     """
     if 'user' not in session:
-        return jsonify({'error': 'Unauthorized.'}), 401
+        return jsonify({'error': 'Unauthorized. Please log in.'}), 401
     
     group_id = request.json.get('groupId')
     group = Group.query.filter_by(id=group_id).first()
