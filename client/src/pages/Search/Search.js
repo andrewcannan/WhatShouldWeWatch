@@ -74,7 +74,7 @@ const Search = () => {
                 <div className='form-wrapper mb-3'>
                     <SearchForm onSearchResults={handleSearchResults} onCancel={handleCancelSearch} />
                 </div>
-                <div>
+                <div className='search-results'>
                     {searchResults.map((item) => (
                         <div className='row mb-3' key={item.id} onClick={() => handleSelectedItem(item)}>
                             <div className='col-6 col-md-4'>
