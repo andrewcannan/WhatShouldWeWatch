@@ -11,6 +11,11 @@
     padding-top: 100px;
 }
 
+.search .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
 .search .form-floating input {
     background-color: #000;
 }
@@ -43,5 +48,11 @@
 @media (min-width: 768px) {
     .search .form-wrapper form {
         min-width: 60vw;
+    }
+}
+
+@media (max-width: 380px) {
+    .search .poster {
+        height: 150px;
     }
 }
