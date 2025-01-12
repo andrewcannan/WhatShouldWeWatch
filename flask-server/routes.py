@@ -422,7 +422,7 @@ def delete_group():
     if user not in group.users:
         return jsonify({'error': 'User not in group.'}), 403
     
-    if user.id not in group.created_by:
+    if user.id != group.created_by:
         return jsonify({'error': 'Unauthorized. Can not delete group.'}), 401
     
     orphaned_shows = [show for show in group.shows if show.groups.count() == 1]
