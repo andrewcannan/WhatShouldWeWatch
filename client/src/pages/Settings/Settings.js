@@ -181,6 +181,21 @@ const Settings = () => {
             }
         }
 
+        const handleLogout = async () => {        
+                try {
+                    const response = await fetch('/logout');
+        
+                    if (response.ok) {
+                        const data = await response.json();
+                        showSuccessToast(data.message);
+                        navigate('/')
+                    } 
+                } catch(error) {
+                    showErrorToast('An unexpected error occurred.');
+                    console.error(error);
+                }
+            }
+
     return (
         groupData && (
         <div className="settings">
@@ -252,6 +267,15 @@ const Settings = () => {
                                 Delete Account
                             </h3>
                             <ConfirmModal modalBodyText={modalBodyText} onSubmit={modalSubmit}/>
+                        </div>
+                    </div>
+
+                    <div className="row mb-3 ps-3">
+                        <div className="col-12 col-md-6 offset-md-3">
+                            <h3 className="text-danger-emphasis clickable"
+                                onClick={() => handleLogout()}>
+                                Logout
+                            </h3>
                         </div>
                     </div>
                 </>
