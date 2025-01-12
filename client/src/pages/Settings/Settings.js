@@ -154,6 +154,31 @@ const Settings = () => {
             }
         };
 
+        const handleDeleteAccount = async () => {
+            try{
+                const response = await fetch('/delete_user', {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    showErrorToast(errorData.error);
+                    throw new Error(errorData);
+                }
+
+                const data = await response.json();
+                showSuccessToast(data.message);
+                navigate('/');
+            }
+            catch(error) {
+                showErrorToast('An unexpected error occurred.');
+                console.error(error);
+            }
+        }
+
     return (
         groupData && (
         <div className="settings">
@@ -208,6 +233,15 @@ const Settings = () => {
                                 Delete Group
                             </h3>
                             <ConfirmModal modalBodyText={'Delete this group permanently? Only group creator can delete group.'} onSubmit={handleDeleteGroup}/>
+                        </div>
+                    </div>
+
+                    <div className="row mb-3 ps-3">
+                        <div className="col-12 col-md-6 offset-md-3">
+                            <h3 className="text-danger-emphasis" data-bs-toggle="modal" data-bs-target="#confirmModal">
+                                Delete Account
+                            </h3>
+                            <ConfirmModal modalBodyText={'Delete this account permanently?'} onSubmit={handleDeleteAccount}/>
                         </div>
                     </div>
                 </>
