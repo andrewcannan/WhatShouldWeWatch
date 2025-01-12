@@ -16,6 +16,8 @@ const Search = () => {
     const location = useLocation();
     const groupId = location.state?.groupId;
     const submitButtonText = 'Add to List'
+    const modalBodyText = `Add "${selectedItem.title|| selectedItem.name}" to your watchlist?`
+
 
     useEffect(() => {
         if (!getSessionCookie()) {
@@ -87,7 +89,7 @@ const Search = () => {
             )}
 
             {selectedItem && (
-            <ShowDetails item={selectedItem} onCancel={handleCancelDetails} onSubmit={handleSubmit} buttonText={submitButtonText} />
+            <ShowDetails item={selectedItem} onCancel={handleCancelDetails} onSubmit={handleSubmit} buttonText={submitButtonText} modalBodyText={modalBodyText} />
             )}
 
             <BottomNav groupId={groupId} />
