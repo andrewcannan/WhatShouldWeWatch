@@ -204,7 +204,7 @@ const Settings = () => {
 
                     <div className="row mb-3 ps-3">
                         <div className="col-12 col-md-6 offset-md-3">
-                            <h3 onClick={() => setEditGroupSelected(true)}>
+                            <h3 className='clickable' onClick={() => setEditGroupSelected(true)}>
                                 Edit Group
                             </h3>
                         </div>
@@ -212,7 +212,7 @@ const Settings = () => {
 
                     <div className="row mb-3 ps-3">
                         <div className="col-12 col-md-6 offset-md-3">
-                            <h3 onClick={() => setManageShowsSelected(true)}>
+                            <h3 className='clickable' onClick={() => setManageShowsSelected(true)}>
                                 Manage Shows/Movies
                             </h3>
                         </div>
@@ -220,7 +220,7 @@ const Settings = () => {
 
                     <div className="row mb-3 ps-3">
                         <div className="col-12 col-md-6 offset-md-3">
-                            <h3 className="text-danger-emphasis" data-bs-toggle="modal" data-bs-target="#confirmModal">
+                            <h3 className="text-danger-emphasis clickable" data-bs-toggle="modal" data-bs-target="#confirmModal">
                                 Leave Group
                             </h3>
                             <ConfirmModal modalBodyText={'Leave this group permanently?'} onSubmit={handleLeaveGroup}/>
@@ -229,7 +229,7 @@ const Settings = () => {
 
                     <div className="row mb-3 ps-3">
                         <div className="col-12 col-md-6 offset-md-3">
-                            <h3 className="text-danger-emphasis" data-bs-toggle="modal" data-bs-target="#confirmModal">
+                            <h3 className="text-danger-emphasis clickable" data-bs-toggle="modal" data-bs-target="#confirmModal">
                                 Delete Group
                             </h3>
                             <ConfirmModal modalBodyText={'Delete this group permanently? Only group creator can delete group.'} onSubmit={handleDeleteGroup}/>
@@ -238,7 +238,7 @@ const Settings = () => {
 
                     <div className="row mb-3 ps-3">
                         <div className="col-12 col-md-6 offset-md-3">
-                            <h3 className="text-danger-emphasis" data-bs-toggle="modal" data-bs-target="#confirmModal">
+                            <h3 className="text-danger-emphasis clickable" data-bs-toggle="modal" data-bs-target="#confirmModal">
                                 Delete Account
                             </h3>
                             <ConfirmModal modalBodyText={'Delete this account permanently?'} onSubmit={handleDeleteAccount}/>

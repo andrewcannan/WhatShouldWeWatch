@@ -20,15 +20,15 @@ const BottomNav = ({ groupId, allShows, onSettingsClick = () => {} }) => {
 
     return (
        <div className='row fixed-bottom border-top border-secondary text-white text-center g-0' style={{backgroundColor: '#000', fontFamily: 'Roboto'}}>
-            <div className='col-4 border-end border-secondary pt-3 nav-item' onClick={handleSearchClick}>
+            <div className='col-4 border-end border-secondary pt-3 nav-item clickable' onClick={handleSearchClick}>
                 <i className="fa-solid fa-magnifying-glass"></i>
                 <p>Search</p>
             </div>
-            <div className='col-4 border-end border-secondary pt-3 nav-item' onClick={handleWatchListClick}>
+            <div className='col-4 border-end border-secondary pt-3 nav-item clickable' onClick={handleWatchListClick}>
                 <i className="fa-solid fa-tv"></i>
                 <p>Watch List</p>
             </div>
-            <div className='col-4 pt-3 nav-item' onClick={handleSettingsClick}>
+            <div className='col-4 pt-3 nav-item clickable' onClick={handleSettingsClick}>
                 <i className="fa-solid fa-gear"></i>
                 <p>Settings</p>
             </div>
