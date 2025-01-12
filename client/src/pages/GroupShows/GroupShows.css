@@ -62,9 +62,30 @@
     font-weight: bold;
   }
 
+  .group-shows .card-img-top {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+  }
+
+  .group-shows .title {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;          
+  }
+
 @media (max-width: 768px) {
     .group-shows .card {
        width: 150px;
+    }
+    .group-shows .card-img-top {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
     }
 
     .group-shows .btn {
