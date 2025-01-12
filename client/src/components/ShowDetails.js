@@ -1,7 +1,7 @@
 import React from "react";
 import ConfirmModal from "./ConfimModal";
 
-const ShowDetails = ({ item, onCancel, onSubmit, buttonText}) => {
+const ShowDetails = ({ item, onCancel, onSubmit, buttonText, modalBodyText}) => {
     return (
         <div className="show-details m-3">
             <div className="row align-items-center">
@@ -46,7 +46,7 @@ const ShowDetails = ({ item, onCancel, onSubmit, buttonText}) => {
                     </div>
                 </div>
             </div>
-            <ConfirmModal modalBodyText={`Remove "${item.title|| item.name}" from your watchlist?`} onSubmit={onSubmit}/>
+            <ConfirmModal modalBodyText={modalBodyText} onSubmit={onSubmit}/>
         </div>
     )
 };
