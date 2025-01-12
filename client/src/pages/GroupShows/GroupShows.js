@@ -16,8 +16,8 @@ const GroupShows = () => {
     const [ showsByGenre, setShowsByGenre ] = useState({});
     const [ selectedItem, setSelectedItem ] = useState(null);
     const [ showType, setShowType ] = useState('movie');
-    const submitButtonText = 'Remove'
-    const modalBodyText = `Remove "${selectedItem.title|| selectedItem.name}" from your watchlist?`
+    const submitButtonText = 'Remove';
+    const modalBodyText = selectedItem?`Remove "${selectedItem.title|| selectedItem.name}" from your watchlist?`: '';
 
     const { getRef, handleDragStart, handleDragEnd, handleDrag } = useDragScroll();
 

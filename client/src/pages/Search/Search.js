@@ -15,8 +15,8 @@ const Search = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const groupId = location.state?.groupId;
-    const submitButtonText = 'Add to List'
-    const modalBodyText = `Add "${selectedItem.title|| selectedItem.name}" to your watchlist?`
+    const submitButtonText = 'Add to List';
+    const modalBodyText = selectedItem?`Add "${selectedItem.title|| selectedItem.name}" to your watchlist?`: '';
 
 
     useEffect(() => {
