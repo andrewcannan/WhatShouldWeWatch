@@ -17,6 +17,7 @@ const GroupShows = () => {
     const [ selectedItem, setSelectedItem ] = useState(null);
     const [ showType, setShowType ] = useState('movie');
     const submitButtonText = 'Remove'
+    const modalBodyText = `Remove "${selectedItem.title|| selectedItem.name}" from your watchlist?`
 
     const { getRef, handleDragStart, handleDragEnd, handleDrag } = useDragScroll();
 
@@ -152,7 +153,7 @@ const GroupShows = () => {
             )}
 
             {selectedItem && (
-                <ShowDetails item={selectedItem} onCancel={handleCancelDetails} onSubmit={handleSubmit} buttonText={submitButtonText} />
+                <ShowDetails item={selectedItem} onCancel={handleCancelDetails} onSubmit={handleSubmit} buttonText={submitButtonText} modalBodyText={modalBodyText} />
             )}
             <BottomNav groupId={groupId} allShows={allShows} />
         </div>
