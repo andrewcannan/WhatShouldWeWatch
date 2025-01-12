@@ -370,7 +370,9 @@ def remove_show():
 def leave_group():
     """
     Retrieves groupId from request, checks if user is associated with that group.
-    Removes the user and commits to db. 
+    Removes the user and commits to db. Once user removed from group, checks if
+    group has users, if not retrieves shows to be orphaned and deletes both
+    group and orphaned shows.
     """
     if 'user' not in session:
         return jsonify({'error': 'Unauthorized. Please log in.'}), 401
@@ -403,7 +405,8 @@ def leave_group():
 def delete_group():
     """
     Retrieves groupId from the request, and if exists, deletes group from db.
-    Returns if user not in group, or is not the group creator.
+    Returns if user not in group, or is not the group creator. Checks for shows that will
+    be orphaned after group deleteion and deletes those.
     """
     if 'user' not in session:
         return jsonify({'error': 'Unauthorized. Please log in.'}), 401
