@@ -436,6 +436,34 @@ def delete_group():
     return jsonify({'message': 'Group deleted successfully.'})
 
 
+@app.route('/delete_user', methods=['POST'])
+def delete_user():
+    if 'user' not in session:
+        return jsonify({'error': 'Unauthorized. Please log in.'}), 401
+    
+    user = User.query.filter_by(id=session['user']).first()
+    
+    if not user:
+        return jsonify({'error': 'User not found.'}), 404
+    
+    groups = user.groups
+    
+    for group in groups:
+        group.users.remove(user)
+        db.session.commit()
+        if group.users.count() == 0:
+            orphaned_shows = [show for show in group.shows if show.groups.count() == 1]
+            db.session.delete(group)
+            for show in orphaned_shows:
+                db.session.delete(show)
+            db.session.commit()
+            
+    db.session.delete(user)
+    db.session.commit()
+    
+    return jsonify({'message': 'User deleted successfully.'}), 200
+
+
 # Callback Functions
 
 def is_password_valid(string):
