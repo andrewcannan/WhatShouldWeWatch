@@ -75,10 +75,10 @@ const Search = () => {
                     {searchResults.map((item) => (
                         <div className='row mb-3' key={item.id} onClick={() => handleSelectedItem(item)}>
                             <div className='col-6 col-md-4'>
-                                <img className='poster' src={`https://image.tmdb.org/t/p/w200${item.poster_path}`} alt={item.title || item.name}></img>
+                                <img className='poster clickable' src={`https://image.tmdb.org/t/p/w200${item.poster_path}`} alt={item.title || item.name}></img>
                             </div>
                             <div className='col-6 col-md-8 d-flex justify-content-center align-items-center'>
-                                <p className='text-center'>{item.title || item.name}</p>
+                                <p className='text-center clickable'>{item.title || item.name}</p>
                             </div>
                         </div>
                     ))}
