@@ -1,12 +1,13 @@
 import React from "react";
 import ConfirmModal from "./ConfimModal";
+import unavailableImage from '../assets/images/unavailableImage.jpg';
 
 const ShowDetails = ({ item, onCancel, onSubmit, buttonText, modalBodyText}) => {
     return (
         <div className="show-details m-3">
             <div className="row align-items-center">
                 <div className="col-12 col-md-4 mb-3">
-                    <img src={`https://image.tmdb.org/t/p/w500${item.poster_path}`} alt={item.title || item.name} className="img-fluid mx-auto d-block"></img>
+                    <img src={item.poster_path? `https://image.tmdb.org/t/p/w500${item.poster_path}`: unavailableImage} alt={item.title || item.name} className="img-fluid mx-auto d-block"></img>
                 </div>
                 <div className="col-12 col-md-8">
                     <div className="row">
