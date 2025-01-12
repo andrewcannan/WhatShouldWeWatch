@@ -5,8 +5,9 @@ import { getSessionCookie } from '../../components/CookieUtil.js'
 import SearchForm from '../../components/forms/SearchForm';
 import LogoNav from '../../components/LogoNav';
 import BottomNav from '../../components/BottomNav';
-import './Search.css'
+import './Search.css';
 import ShowDetails from '../../components/ShowDetails';
+import unavailableImage from '../../assets/images/unavailableImage.jpg'
 
 
 const Search = () => {
@@ -77,7 +78,7 @@ const Search = () => {
                     {searchResults.map((item) => (
                         <div className='row mb-3' key={item.id} onClick={() => handleSelectedItem(item)}>
                             <div className='col-6 col-md-4'>
-                                <img className='poster clickable' src={`https://image.tmdb.org/t/p/w200${item.poster_path}`} alt={item.title || item.name}></img>
+                                <img className='poster clickable' src={item.poster_path? `https://image.tmdb.org/t/p/w200${item.poster_path}`: unavailableImage} alt={item.title || item.name}></img>
                             </div>
                             <div className='col-6 col-md-8 d-flex justify-content-center align-items-center'>
                                 <p className='text-center clickable'>{item.title || item.name}</p>

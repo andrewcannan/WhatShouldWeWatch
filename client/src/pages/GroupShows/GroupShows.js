@@ -7,7 +7,8 @@ import { useDragScroll } from '../../components/Drag-to-Scroll';
 import LogoNav from '../../components/LogoNav';
 import BottomNav from '../../components/BottomNav';
 import ShowDetails from '../../components/ShowDetails';
-import './GroupShows.css'
+import './GroupShows.css';
+import unavailableImage from '../../assets/images/unavailableImage.jpg';
 
 const GroupShows = () => {
     const navigate = useNavigate();
@@ -140,12 +141,20 @@ const GroupShows = () => {
                                     onMouseLeave={() => handleDragEnd(genreIndex)}
                                     onMouseUp={() => handleDragEnd(genreIndex)}
                                     onMouseMove={(e) => handleDrag(genreIndex, e)}>
-                                {showsByGenre[genre].filter(show => show.media_type === showType).map((show, index) => (
-                                    <div key={show.id || index} className='card' onClick={() => handleSelectedItem(show)} draggable='false'>
-                                        <img className='card-img-top' src={`https://image.tmdb.org/t/p/w200${show.poster_path}`} alt={show.title || show.name} draggable='false'></img>
-                                        <p className='h5'>{show.title || show.name}</p>
-                                    </div>
-                                ))}
+                                {showsByGenre[genre].filter(show => show.media_type === showType).map((show, index) => {
+                                    console.log("Poster Path: ", show.poster_path);
+                                    return (
+                                        <div key={show.id || index} className='card' onClick={() => handleSelectedItem(show)} draggable='false'>
+                                            <img 
+                                                className='card-img-top' 
+                                                src={show.poster_path ? `https://image.tmdb.org/t/p/w200${show.poster_path}` : unavailableImage} 
+                                                alt={show.title || show.name} 
+                                                draggable='false' 
+                                            />
+                                            <p className='h5'>{show.title || show.name}</p>
+                                        </div>
+                                    );
+                                })}
                             </div>
                         </div>
                     ))}

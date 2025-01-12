@@ -45,6 +45,12 @@
     border-color: #fff; 
 }
 
+.search .poster {
+    height: 300px;
+    width: 200px;
+    object-fit: cover;
+}
+
 @media (min-width: 768px) {
     .search .form-wrapper form {
         min-width: 60vw;
@@ -54,5 +60,6 @@
 @media (max-width: 380px) {
     .search .poster {
         height: 150px;
+        width: 100px
     }
 }
