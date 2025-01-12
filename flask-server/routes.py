@@ -438,6 +438,11 @@ def delete_group():
 
 @app.route('/delete_user', methods=['POST'])
 def delete_user():
+    """
+    Retrieves user from the session. If user found removes user from any groups
+    they are associatted with. Any groups and shows to be orphaned are deleted and user
+    instance deleted.
+    """
     if 'user' not in session:
         return jsonify({'error': 'Unauthorized. Please log in.'}), 401
     
