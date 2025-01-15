@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/WhatShouldWeWatch/static/css/main.37b2e2ed.css",
+    "main.js": "/WhatShouldWeWatch/static/js/main.c5f46f01.js",
+    "static/media/background.jpg": "/WhatShouldWeWatch/static/media/background.655cd494cad4b5bbc0e1.jpg",
+    "static/media/logo.png": "/WhatShouldWeWatch/static/media/logo.dbe3609899a5a2eb2839.png",
+    "static/media/unavailableImage.jpg": "/WhatShouldWeWatch/static/media/unavailableImage.080e567336bfb3a6c5ea.jpg",
+    "static/media/joinGroup.jpg": "/WhatShouldWeWatch/static/media/joinGroup.7f347d5ffd7dace9f35f.jpg",
+    "index.html": "/WhatShouldWeWatch/index.html",
+    "main.37b2e2ed.css.map": "/WhatShouldWeWatch/static/css/main.37b2e2ed.css.map",
+    "main.c5f46f01.js.map": "/WhatShouldWeWatch/static/js/main.c5f46f01.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.37b2e2ed.css",
+    "static/js/main.c5f46f01.js"
+  ]
+}
