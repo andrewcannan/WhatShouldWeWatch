@@ -21,6 +21,7 @@ const Settings = () => {
     const [ groupData, setGroupData ] = useState(null);
     const [ modalBodyText, setModalBodyText ] = useState(null)
     const [ modalSubmit, setModalSubmit ] = useState(null);
+    const serverURL = process.env.REACT_APP_SERVER_API;
 
     useEffect(() => {
         if (!getSessionCookie()) {
@@ -32,7 +33,7 @@ const Settings = () => {
     useEffect(() => {
         const fetchGroups = async () => {
             try {
-                const response = await fetch('/getGroups', {
+                const response = await fetch(`${serverURL}/getGroups`, {
                     method: 'GET',
                     credentials: 'include'
                 });
@@ -53,7 +54,7 @@ const Settings = () => {
             }
         }
         fetchGroups();
-    }, [groupId]);
+    }, [groupId, serverURL]);
 
     const handleEditCancel = () => {
         setEditGroupSelected(false);
@@ -71,7 +72,7 @@ const Settings = () => {
             e.preventDefault();
     
             try {
-                const response = await fetch('/remove_show', {
+                const response = await fetch(`${serverURL}/remove_show`, {
                     method: 'POST',
                     headers: {
                         "Content-Type": "application/json",
@@ -102,7 +103,7 @@ const Settings = () => {
 
         const handleLeaveGroup = async () => {
             try {
-                const response = await fetch('/leave_group', {
+                const response = await fetch(`${serverURL}/leave_group`, {
                     method: 'POST',
                     headers: {
                         "Content-Type": "application/json",
@@ -130,7 +131,7 @@ const Settings = () => {
 
         const handleDeleteGroup = async () => {
             try {
-                const response = await fetch('/delete_group', {
+                const response = await fetch(`${serverURL}/delete_group`, {
                     method: 'POST',
                     headers: {
                         "Content-Type": "application/json",
@@ -158,7 +159,7 @@ const Settings = () => {
 
         const handleDeleteAccount = async () => {
             try{
-                const response = await fetch('/delete_user', {
+                const response = await fetch(`${serverURL}/delete_user`, {
                     method: 'POST',
                     headers: {
                         "Content-Type": "application/json",
@@ -183,7 +184,7 @@ const Settings = () => {
 
         const handleLogout = async () => {        
                 try {
-                    const response = await fetch('/logout');
+                    const response = await fetch(`${serverURL}/logout`);
         
                     if (response.ok) {
                         const data = await response.json();

@@ -9,6 +9,7 @@ const RegisterForm = () => {
         password: '',
         confirmPassword: ''
     });
+    const serverURL = process.env.REACT_APP_SERVER_API;
 
     const handleChange = (e) => {
         const { id, value } = e.target
@@ -50,7 +51,7 @@ const RegisterForm = () => {
         form.append('password', password);
 
         try {
-            const response = await fetch('/register', {
+            const response = await fetch(`${serverURL}/register`, {
                 method: 'POST',
                 body: form
             });

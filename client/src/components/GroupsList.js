@@ -7,6 +7,7 @@ import avatars from './Avatars';
 const GroupsList = () => {
     const navigate = useNavigate();
     const [ groups, setGroups ] = useState([]);
+    const serverURL = process.env.REACT_APP_SERVER_API;
 
     useEffect(() => {
         if (!getSessionCookie()) {
@@ -19,7 +20,7 @@ const GroupsList = () => {
 
     const fetchGroups = async (user) => {
         try {
-            const response = await fetch('/getGroups', {
+            const response = await fetch(`${serverURL}/getGroups`, {
                 method: 'GET',
                 credentials: 'include'
             });

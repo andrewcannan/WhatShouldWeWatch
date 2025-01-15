@@ -19,6 +19,8 @@ const GroupShows = () => {
     const [ showType, setShowType ] = useState('movie');
     const submitButtonText = 'Remove';
     const modalBodyText = selectedItem?`Remove "${selectedItem.title|| selectedItem.name}" from your watchlist?`: '';
+    const serverURL = process.env.REACT_APP_SERVER_API;
+
 
     const { getRef, handleDragStart, handleDragEnd, handleDrag } = useDragScroll();
 
@@ -40,7 +42,7 @@ const GroupShows = () => {
 
     const getShows = useCallback(async () => {
         try {
-            const response = await fetch(`/getShows?groupId=${groupId}`, {
+            const response = await fetch(`${serverURL}/groupId=${groupId}`, {
                 method: 'GET'
             });
 
@@ -59,7 +61,7 @@ const GroupShows = () => {
             showErrorToast('An unexpected error occurred.');
             console.error(error);
         }
-    }, [groupId, setAllShows]);
+    }, [groupId, setAllShows, serverURL]);
 
     useEffect(() => {
         getShows();
@@ -88,7 +90,7 @@ const GroupShows = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch('/remove_show', {
+            const response = await fetch(`${serverURL}/remove_show`, {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",

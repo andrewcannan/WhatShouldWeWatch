@@ -9,6 +9,7 @@ const CreateGroupForm = () => {
         avatar: '',
         groupName: ''
     });
+    const serverURL = process.env.REACT_APP_SERVER_API;
 
     const handleChange = (e) => {
         const {id, value} = e.target;
@@ -33,7 +34,7 @@ const CreateGroupForm = () => {
         }
 
         try {
-            const response = await fetch('/create_group', {
+            const response = await fetch(`${serverURL}/create_group`, {
                 method: 'POST',
                 body: form
             });

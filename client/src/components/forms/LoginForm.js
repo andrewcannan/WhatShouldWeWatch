@@ -9,7 +9,8 @@ const LoginForm = () => {
     const [ formData, setFormdata ] = useState({
         username: '',
         password: ''
-    })
+    });
+    const serverURL = process.env.REACT_APP_SERVER_API;
 
     const handleChange = (e) => {
         const {id, value} = e.target;
@@ -25,7 +26,7 @@ const LoginForm = () => {
         }
 
         try {
-            const response = await fetch('/login', {
+            const response = await fetch(`${serverURL}/login`, {
                 method: 'POST',
                 body: form
             });

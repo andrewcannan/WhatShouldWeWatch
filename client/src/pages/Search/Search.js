@@ -18,6 +18,7 @@ const Search = () => {
     const groupId = location.state?.groupId;
     const submitButtonText = 'Add to List';
     const modalBodyText = selectedItem?`Add "${selectedItem.title|| selectedItem.name}" to your watchlist?`: '';
+    const serverURL = process.env.REACT_APP_SERVER_API;
 
 
     useEffect(() => {
@@ -45,7 +46,7 @@ const Search = () => {
 
     const handleSubmit = async () => {
         try {
-            const response = await fetch('/add_show', {
+            const response = await fetch(`${serverURL}/add_show`, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({groupId, selectedItem})

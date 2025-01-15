@@ -9,12 +9,13 @@ const SearchForm = ({ onSearchResults, onCancel }) => {
     const handleChange = (e) => {
         setFormData(e.target.value);
     };
+    const serverURL = process.env.REACT_APP_SERVER_API;
 
     const handleSearch = async (e) => {
         e.preventDefault();
 
         try {
-            const response = await fetch(`/search_tmdb?searchKeyword=${formData}`, {
+            const response = await fetch(`${serverURL}/search_tmdb?searchKeyword=${formData}`, {
                 method: 'GET',
             });
 

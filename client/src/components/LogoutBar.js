@@ -5,11 +5,13 @@ import { useNavigate } from 'react-router-dom';
 
 const LogutBar = () => {
     const navigate = useNavigate()
+    const serverURL = process.env.REACT_APP_SERVER_API;
+
     const handleLogout = async (e) => {
         e.preventDefault();
 
         try {
-            const response = await fetch('/logout');
+            const response = await fetch(`${serverURL}/logout`);
 
             if (response.ok) {
                 const data = await response.json();

@@ -9,6 +9,7 @@ const JoinGroupForm = () => {
     const [ formData, setFormData ] = useState({
         groupCode: ''
     });
+    const serverURL = process.env.REACT_APP_SERVER_API;
 
     const handleChange = (e) => {
         const {id, value} = e.target;
@@ -19,7 +20,7 @@ const JoinGroupForm = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch(`/join_group?groupCode=${formData.groupCode}`, {
+            const response = await fetch(`${serverURL}/join_group?groupCode=${formData.groupCode}`, {
                 method: 'GET',
             });
 
@@ -47,7 +48,7 @@ const JoinGroupForm = () => {
         };
 
         try {
-            const response = await fetch('/join_group', {
+            const response = await fetch(`${serverURL}/join_group`, {
                 method: 'POST',
                 body: form
             });
