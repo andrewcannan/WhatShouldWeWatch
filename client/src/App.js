@@ -19,7 +19,7 @@ import Settings from "./pages/Settings/Settings.js";
 function App() {
     return (
         <div className="App">
-            <Router>
+            <Router basename="/WhatShouldWeWatch">
             <ToastContainer position='top-right' />
                 <Routes>
                     <Route path="/" element={<Welcome />} />
