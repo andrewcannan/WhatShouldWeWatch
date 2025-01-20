@@ -14,6 +14,7 @@ CORS(app, supports_credentials=True, resources={r"/*": {"origins": "https://andr
 app.config["SECRET_KEY"] = os.getenv("FLASK_SECRET_KEY")
 app.config['SESSION_COOKIE_HTTPONLY'] = False
 app.config['SESSION_COOKIE_SAMESITE'] = 'None'
+app.config['SESSION_COOKIE_SECURE'] = True
 app.config['TMDB_TOKEN'] = os.getenv('TMDB_TOKEN')
 
 app.config['SQLALCHEMY_DATABASE_URI'] = (
