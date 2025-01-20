@@ -9,7 +9,7 @@ import os
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "https://andrewcannan.github.io"}})
+CORS(app, supports_credentials=True, resources={r"/*": {"origins": "https://andrewcannan.github.io"}})
 
 app.config["SECRET_KEY"] = os.getenv("FLASK_SECRET_KEY")
 app.config['SESSION_COOKIE_HTTPONLY'] = False
