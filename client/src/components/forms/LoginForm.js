@@ -28,6 +28,7 @@ const LoginForm = () => {
         try {
             const response = await fetch(`${serverURL}/login`, {
                 method: 'POST',
+                credentials: 'include',
                 body: form
             });
 
