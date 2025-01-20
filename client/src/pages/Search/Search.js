@@ -48,6 +48,7 @@ const Search = () => {
         try {
             const response = await fetch(`${serverURL}/add_show`, {
                 method: 'POST',
+                credentials: 'include',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({groupId, selectedItem})
             });

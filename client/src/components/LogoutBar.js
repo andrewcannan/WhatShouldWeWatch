@@ -11,7 +11,9 @@ const LogutBar = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch(`${serverURL}/logout`);
+            const response = await fetch(`${serverURL}/logout`, {
+                credentials: 'include'
+            });
 
             if (response.ok) {
                 const data = await response.json();

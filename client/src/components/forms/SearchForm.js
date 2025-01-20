@@ -17,6 +17,7 @@ const SearchForm = ({ onSearchResults, onCancel }) => {
         try {
             const response = await fetch(`${serverURL}/search_tmdb?searchKeyword=${formData}`, {
                 method: 'GET',
+                credentials: 'include'
             });
 
             if (response.ok) {

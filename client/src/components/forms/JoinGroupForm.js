@@ -22,6 +22,7 @@ const JoinGroupForm = () => {
         try {
             const response = await fetch(`${serverURL}/join_group?groupCode=${formData.groupCode}`, {
                 method: 'GET',
+                credentials: 'include'
             });
 
             if (response.ok) {
@@ -50,6 +51,7 @@ const JoinGroupForm = () => {
         try {
             const response = await fetch(`${serverURL}/join_group`, {
                 method: 'POST',
+                credentials: 'include',
                 body: form
             });
 

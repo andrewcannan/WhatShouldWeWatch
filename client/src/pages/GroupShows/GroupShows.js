@@ -43,7 +43,8 @@ const GroupShows = () => {
     const getShows = useCallback(async () => {
         try {
             const response = await fetch(`${serverURL}/groupId=${groupId}`, {
-                method: 'GET'
+                method: 'GET',
+                credentials: 'include'
             });
 
             if (!response.ok) {
@@ -92,6 +93,7 @@ const GroupShows = () => {
         try {
             const response = await fetch(`${serverURL}/remove_show`, {
                 method: 'POST',
+                credentials: 'include',
                 headers: {
                     "Content-Type": "application/json",
                   },

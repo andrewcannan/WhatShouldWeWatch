@@ -74,6 +74,7 @@ const Settings = () => {
             try {
                 const response = await fetch(`${serverURL}/remove_show`, {
                     method: 'POST',
+                    credentials: 'include',
                     headers: {
                         "Content-Type": "application/json",
                       },
@@ -105,6 +106,7 @@ const Settings = () => {
             try {
                 const response = await fetch(`${serverURL}/leave_group`, {
                     method: 'POST',
+                    credentials: 'include',
                     headers: {
                         "Content-Type": "application/json",
                       },
@@ -133,6 +135,7 @@ const Settings = () => {
             try {
                 const response = await fetch(`${serverURL}/delete_group`, {
                     method: 'POST',
+                    credentials: 'include',
                     headers: {
                         "Content-Type": "application/json",
                       },
@@ -161,6 +164,7 @@ const Settings = () => {
             try{
                 const response = await fetch(`${serverURL}/delete_user`, {
                     method: 'POST',
+                    credentials: 'include',
                     headers: {
                         "Content-Type": "application/json",
                     },
@@ -184,7 +188,9 @@ const Settings = () => {
 
         const handleLogout = async () => {        
                 try {
-                    const response = await fetch(`${serverURL}/logout`);
+                    const response = await fetch(`${serverURL}/logout`, {
+                        credentials: 'include'
+                    });
         
                     if (response.ok) {
                         const data = await response.json();

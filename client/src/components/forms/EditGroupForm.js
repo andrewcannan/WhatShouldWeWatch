@@ -38,6 +38,7 @@ const EditGroupForm = ({groupId, groupData, handleEditCancel}) => {
         try {
             const response = await fetch(`${serverURL}/edit_group`, {
                 method: 'POST',
+                credentials: 'include',
                 body: form
             });
 

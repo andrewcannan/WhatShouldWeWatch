@@ -53,6 +53,7 @@ const RegisterForm = () => {
         try {
             const response = await fetch(`${serverURL}/register`, {
                 method: 'POST',
+                credentials: 'include',
                 body: form
             });
 

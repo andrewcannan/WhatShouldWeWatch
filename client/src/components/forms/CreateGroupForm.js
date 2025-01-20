@@ -36,6 +36,7 @@ const CreateGroupForm = () => {
         try {
             const response = await fetch(`${serverURL}/create_group`, {
                 method: 'POST',
+                credentials: 'include',
                 body: form
             });
 

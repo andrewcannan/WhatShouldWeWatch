@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { getSessionCookie } from './CookieUtil';
 import { useNavigate } from 'react-router-dom';
 import { showErrorToast } from './ToastHelper';
@@ -9,16 +9,7 @@ const GroupsList = () => {
     const [ groups, setGroups ] = useState([]);
     const serverURL = process.env.REACT_APP_SERVER_API;
 
-    useEffect(() => {
-        if (!getSessionCookie()) {
-            showErrorToast("Oops! Please sign in to continue.");
-            navigate('/login');
-        } else {
-            fetchGroups();
-        }
-    }, [navigate]);
-
-    const fetchGroups = async (user) => {
+   const fetchGroups = useCallback(async (user) => {
         try {
             const response = await fetch(`${serverURL}/getGroups`, {
                 method: 'GET',
@@ -38,7 +29,16 @@ const GroupsList = () => {
             showErrorToast('An unexpected error occurred.');
             console.error(error);
         }
-    }
+    }, [serverURL]);
+
+    useEffect(() => {
+        if (!getSessionCookie()) {
+            showErrorToast("Oops! Please sign in to continue.");
+            navigate('/login');
+        } else {
+            fetchGroups();
+        }
+    }, [navigate, fetchGroups]);
 
     const cardClassName = () => {
         if (groups.length === 1) {
